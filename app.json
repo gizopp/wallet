@@ -12,6 +12,17 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/pt-sans-caption/PTSansCaption-400Regular.ttf",
+            "node_modules/@expo-google-fonts/pt-sans-caption/PTSansCaption-700Bold.ttf"
+          ]
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },

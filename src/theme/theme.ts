@@ -23,13 +23,13 @@ const borderRadius = {
 };
 
 const fontFamily = {
-  regular: "PTSansCaption-Regular",
-  bold: "PTSansCaption-Bold",
+  regular: "PTSansCaption_400Regular",
+  bold: "PTSansCaption_700Bold",
 };
 
 const fonts = {
-  "PTSansCaption-Regular": PTSansCaption_400Regular,
-  "PTSansCaption-Bold": PTSansCaption_700Bold,
+  PTSansCaption_400Regular,
+  PTSansCaption_700Bold,
 };
 
 const theme = {
@@ -37,6 +37,7 @@ const theme = {
   fontSize,
   fontFamily,
   borderRadius,
+  fonts,
 };
 
 export default theme;
