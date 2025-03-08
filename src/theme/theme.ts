@@ -2,6 +2,7 @@ import {
   PTSansCaption_400Regular,
   PTSansCaption_700Bold,
 } from "@expo-google-fonts/pt-sans-caption";
+import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
 const colors = {
   darkBlue: "#142995",
@@ -14,14 +15,16 @@ const colors = {
 };
 
 const fontSize = {
-  h1: 28,
-  h3: 22,
-  h4: 18,
+  h1: moderateScale(28),
+  h2: moderateScale(22),
+  h3: moderateScale(18),
+  h4: moderateScale(16),
+  h5: moderateScale(14),
 };
 
 const borderRadius = {
-  default: 12,
-  big: 50,
+  default: scale(12),
+  big: scale(50),
 };
 
 const fontFamily = {
@@ -34,12 +37,19 @@ const fonts = {
   PTSansCaption_700Bold,
 };
 
+const scaling = {
+  moderateScale,
+  scale,
+  verticalScale,
+};
+
 const theme = {
   colors,
   fontSize,
   fontFamily,
   borderRadius,
   fonts,
+  scaling,
 };
 
 export default theme;

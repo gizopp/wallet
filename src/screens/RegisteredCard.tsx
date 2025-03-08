@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
-import { Input } from "../components/input/Input";
 import { Header } from "../components/header/Header";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
+import { BlackCard } from "../components/card/BlackCard";
 
 export const RegisteredCard: React.FC = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -30,7 +30,7 @@ export const RegisteredCard: React.FC = () => {
           <View style={styles.absoluteFormContainer}>
             <Text style={styles.mainTitle}>Wallet Test</Text>
             <Text style={styles.subTitle}>cartão cadastrado com sucesso</Text>
-
+            <BlackCard />
             <Button
               text="avançar"
               backgroundColor={theme.colors.lightBlue}
@@ -49,24 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    zIndex: 10,
-  },
-  backButton: {
-    padding: 8,
-  },
-  backButtonText: {
-    color: theme.colors.lightBlue,
-    fontSize: 24,
-  },
-  headerTitle: {
-    color: theme.colors.lightBlue,
-    fontSize: 24,
-    marginLeft: 15,
-    fontFamily: theme.fontFamily.regular,
-  },
   absoluteFormContainer: {
     position: "absolute",
     left: 0,
@@ -79,14 +61,14 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     fontSize: theme.fontSize.h1,
     fontFamily: theme.fontFamily.regular,
-    marginBottom: 30,
+    marginBottom: 8,
     textAlign: "center",
   },
   subTitle: {
     color: theme.colors.white,
     fontSize: theme.fontSize.h3,
     fontFamily: theme.fontFamily.regular,
-    marginBottom: 30,
+    marginBottom: 8,
     textAlign: "center",
   },
   rowInputs: {

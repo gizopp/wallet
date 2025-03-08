@@ -34,7 +34,7 @@ export const Input: React.FC<InputProps> = ({
         style={{
           color: labelColor || theme.colors.white,
           marginBottom: 8,
-          fontSize: 16,
+          fontSize: theme.fontSize.h5,
           fontFamily: theme.fontFamily.regular,
         }}
         numberOfLines={1}
