@@ -2,29 +2,34 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
-  StyleSheet,
   TextInputProps,
   Image,
   ImageSourcePropType,
   ColorValue,
 } from "react-native";
+import { MaskedTextInput } from "react-native-mask-text";
 import theme from "../../theme/theme";
 
-interface InputProps extends TextInputProps {
+interface InputProps extends Omit<TextInputProps, "value" | "onChangeText"> {
   label: string;
   labelColor?: ColorValue;
   leftIcon?: ImageSourcePropType;
+  mask?: string;
+  value?: string;
+  onChangeText?: (text: string, rawText: string) => void;
 }
 
 export const Input: React.FC<InputProps> = ({
   label,
   labelColor = theme.colors.white,
   leftIcon,
+  mask,
+  value,
+  onChangeText,
   ...textInputProps
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={{ width: "100%" }}>
       <Text
         style={{
           color: labelColor || theme.colors.white,
@@ -35,7 +40,15 @@ export const Input: React.FC<InputProps> = ({
       >
         {label}
       </Text>
-      <View style={styles.inputContainer}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          backgroundColor: theme.colors.white,
+          borderRadius: 6,
+          overflow: "hidden",
+        }}
+      >
         {leftIcon && (
           <View
             style={{
@@ -59,29 +72,22 @@ export const Input: React.FC<InputProps> = ({
             />
           </View>
         )}
-        <TextInput style={styles.input} {...textInputProps} />
+        <MaskedTextInput
+          mask={mask}
+          value={value}
+          onChangeText={onChangeText}
+          style={{
+            flex: 1,
+            paddingVertical: 16,
+            paddingRight: 16,
+            paddingLeft: !leftIcon && 15,
+            fontSize: 16,
+            color: theme.colors.black,
+            fontFamily: theme.fontFamily.regular,
+          }}
+          {...textInputProps}
+        />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: theme.colors.white,
-    borderRadius: 6,
-    overflow: "hidden",
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 16,
-    paddingRight: 16,
-    fontSize: 16,
-    color: theme.colors.darkBlue,
-    fontFamily: theme.fontFamily.regular,
-  },
-});

@@ -36,6 +36,7 @@ export const RegisterCard: React.FC = () => {
               placeholder=""
               keyboardType="numeric"
               leftIcon={require("../../assets/images/camera-icon.png")}
+              mask="9999 9999 9999 9999"
             />
             <Input
               label="nome do titular do cartão"
@@ -52,6 +53,7 @@ export const RegisterCard: React.FC = () => {
                   placeholder="00/00"
                   keyboardType="numeric"
                   maxLength={5}
+                  mask="99/99"
                 />
               </View>
               <View style={styles.halfInput}>
@@ -63,6 +65,7 @@ export const RegisterCard: React.FC = () => {
                   keyboardType="numeric"
                   secureTextEntry={true}
                   maxLength={3}
+                  mask="999"
                 />
               </View>
             </View>
