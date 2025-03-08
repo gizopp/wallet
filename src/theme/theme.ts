@@ -4,11 +4,12 @@ import {
 } from "@expo-google-fonts/pt-sans-caption";
 
 const colors = {
-  darkBlue: "#1a237e",
+  darkBlue: "#142995",
   lightBlue: "#12C2E9",
   neon: "#A5FF32",
   white: "#fff",
   black: "#000",
+  lightGray: "#eee",
 };
 
 const fontSize = {
