@@ -13,42 +13,29 @@ import { TRootStackParamList } from "../components/navigation/RootStack";
 import { Button } from "../components/button/Button";
 import { Background } from "../components/background/Background";
 import { Input } from "../components/input/Input";
-
-type TRegisterCardScreenNavigationProp = StackNavigationProp<
-  TRootStackParamList,
-  "RegisterCard"
->;
+import { Header } from "../components/header/Header";
 
 export const RegisterCard: React.FC = () => {
-  const navigation = useNavigation<TRegisterCardScreenNavigationProp>();
   const [cardNumber, setCardNumber] = useState("");
   const [cardholderName, setCardholderName] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [securityCode, setSecurityCode] = useState("");
 
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
-
   return (
     <Background>
+      <Header />
       <View style={styles.screenContent}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-            <Text style={styles.backButtonText}>←</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>cadastro</Text>
-        </View>
-
         <View style={styles.absoluteFormContainer}>
           <Text style={styles.mainTitle}>Wallet Test</Text>
-          <View>
+          <View style={{ gap: 20 }}>
             <Input
               label="número do cartão"
+              labelColor={theme.colors.lightGray}
               value={cardNumber}
               onChangeText={setCardNumber}
               placeholder=""
               keyboardType="numeric"
+              leftIcon={require("../../assets/images/camera-icon.png")}
             />
             <Input
               label="nome do titular do cartão"
@@ -97,10 +84,6 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   header: {
-    position: "absolute",
-    top: 20,
-    left: 20,
-    right: 20,
     flexDirection: "row",
     alignItems: "center",
     zIndex: 10,
@@ -123,7 +106,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0,
+    bottom: 40,
     justifyContent: "center",
   },
   mainTitle: {

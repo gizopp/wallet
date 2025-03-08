@@ -7,23 +7,58 @@ import {
   TextInputProps,
   Image,
   ImageSourcePropType,
+  ColorValue,
 } from "react-native";
 import theme from "../../theme/theme";
 
 interface InputProps extends TextInputProps {
   label: string;
+  labelColor?: ColorValue;
   leftIcon?: ImageSourcePropType;
 }
 
 export const Input: React.FC<InputProps> = ({
   label,
+  labelColor = theme.colors.white,
   leftIcon,
   ...textInputProps
 }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Text
+        style={{
+          color: labelColor || theme.colors.white,
+          marginBottom: 8,
+          fontSize: 16,
+          fontFamily: theme.fontFamily.regular,
+        }}
+      >
+        {label}
+      </Text>
       <View style={styles.inputContainer}>
+        {leftIcon && (
+          <View
+            style={{
+              width: 32,
+              height: 32,
+              backgroundColor: theme.colors.lightBlue,
+              borderRadius: theme.borderRadius.big,
+              marginLeft: 10,
+              marginRight: 8,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              source={leftIcon}
+              style={{
+                width: 18,
+                height: 18,
+                resizeMode: "contain",
+              }}
+            />
+          </View>
+        )}
         <TextInput style={styles.input} {...textInputProps} />
       </View>
     </View>
@@ -34,14 +69,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
-  label: {
-    color: theme.colors.white,
-    marginBottom: 8,
-    fontSize: 16,
-    fontFamily: theme.fontFamily.regular,
-  },
   inputContainer: {
-    position: "relative",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: theme.colors.white,
@@ -52,7 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 16,
     paddingRight: 16,
-    paddingLeft: 10,
     fontSize: 16,
     color: theme.colors.darkBlue,
     fontFamily: theme.fontFamily.regular,

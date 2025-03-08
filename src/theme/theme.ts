@@ -9,7 +9,8 @@ const colors = {
   neon: "#A5FF32",
   white: "#fff",
   black: "#000",
-  lightGray: "#eee",
+  gray: "#eee",
+  lightGray: "#bbb",
 };
 
 const fontSize = {
