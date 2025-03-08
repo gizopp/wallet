@@ -27,7 +27,7 @@ export const RegisterCard: React.FC = () => {
       <View style={styles.screenContent}>
         <View style={styles.absoluteFormContainer}>
           <Text style={styles.mainTitle}>Wallet Test</Text>
-          <View style={{ gap: 20 }}>
+          <View style={{ gap: 32 }}>
             <Input
               label="número do cartão"
               labelColor={theme.colors.lightGray}
