@@ -37,6 +37,7 @@ export const Input: React.FC<InputProps> = ({
           fontSize: 16,
           fontFamily: theme.fontFamily.regular,
         }}
+        numberOfLines={1}
       >
         {label}
       </Text>

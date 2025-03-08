@@ -15,6 +15,7 @@ const colors = {
 
 const fontSize = {
   h1: 28,
+  h3: 22,
   h4: 18,
 };
 
