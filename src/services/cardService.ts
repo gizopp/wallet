@@ -1,4 +1,4 @@
-import { CardData } from "../types/card";
+import { ICreditCard } from "../types/creditCard";
 
 const API_URL = "http://localhost:3000";
 
@@ -10,9 +10,9 @@ export interface CardFormData {
 }
 
 export const cardService = {
-  saveCard: async (cardFormData: CardFormData): Promise<CardData> => {
+  saveCard: async (cardFormData: CardFormData): Promise<ICreditCard> => {
     try {
-      const cardData: Omit<CardData, "id"> = {
+      const cardData: Omit<ICreditCard, "id"> = {
         cardNumber: cardFormData.cardNumber,
         cardHolder: cardFormData.cardHolder,
         validity: cardFormData.validity,
@@ -41,7 +41,7 @@ export const cardService = {
     }
   },
 
-  getCards: async (): Promise<CardData[]> => {
+  getCards: async (): Promise<ICreditCard[]> => {
     try {
       const response = await fetch(`${API_URL}/cards`);
       if (!response.ok) {

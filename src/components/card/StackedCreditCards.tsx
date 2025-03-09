@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { CreditCard } from "./CreditCard";
-import { CardData } from "../../types/card";
+import { ICreditCard } from "../../types/creditCard";
 
 interface StackedCreditCardsProps {
-  cards: CardData[];
+  cards: ICreditCard[];
   cardOffset?: number;
   onCardPress?: (cardId: string) => void;
 }

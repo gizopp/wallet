@@ -2,14 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../../theme/theme";
 import { useAppSelector } from "../../store/hooks";
+import { ICreditCard } from "../../types/creditCard";
 
-interface CreditCardProps {
-  cardType?: string;
-  backgroundColor?: string;
-  textColor?: string;
-}
-
-export const CreditCard: React.FC<CreditCardProps> = ({
+export const CreditCard: React.FC<Omit<ICreditCard, "id" | "cvv">> = ({
   cardType = "Black Card",
   backgroundColor = "#111",
   textColor = theme.colors.white,

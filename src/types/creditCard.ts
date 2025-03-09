@@ -1,4 +1,4 @@
-export interface CardData {
+export interface ICreditCard {
   id: string;
   cardType: string;
   cardHolder: string;

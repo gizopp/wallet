@@ -6,13 +6,13 @@ import theme from "../theme/theme";
 import { MyCardsHeader } from "../components/header/MyCardsHeader";
 import { Button } from "../components/button/Button";
 import { StackedCreditCards } from "../components/card/StackedCreditCards";
-import { CardData } from "../types/card";
+import { ICreditCard } from "../types/creditCard";
 
 export const MyCards: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
-  const [orderedCards, setOrderedCards] = useState<CardData[]>([
+  const [orderedCards, setOrderedCards] = useState<ICreditCard[]>([
     {
       id: "1",
       cardType: "Black Card",
