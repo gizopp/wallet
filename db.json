@@ -1,10 +1,14 @@
 {
   "cards": [
     {
-      "id": "4ec42ba9-50af-40d2-af90-8312edbd9ca2",
-      "number": "3529 5435 3355 8727",
-      "cvv": "317",
-      "name": "John Doe"
+      "id": "905b",
+      "cardNumber": "1234 5678 9101 0101",
+      "cardHolder": "Giovana Zopelaro",
+      "validity": "06/12",
+      "cvv": "123",
+      "cardType": "default",
+      "backgroundColor": "#EFEFEF",
+      "textColor": "#000000"
     }
   ]
 }

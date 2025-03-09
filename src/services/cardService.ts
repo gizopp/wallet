@@ -13,7 +13,7 @@ export const cardService = {
   saveCard: async (cardFormData: CardFormData): Promise<CardData> => {
     try {
       const cardData: Omit<CardData, "id"> = {
-        cardNumber: cardFormData.cardNumber.replace(/\s/g, ""),
+        cardNumber: cardFormData.cardNumber,
         cardHolder: cardFormData.cardHolder,
         validity: cardFormData.validity,
         cvv: cardFormData.cvv,

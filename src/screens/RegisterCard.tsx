@@ -17,13 +17,13 @@ import {
   handleAdvance,
 } from "../store/slices/cardSlice";
 import { cardService } from "../services/cardService";
-import { FormInput } from "../components/input/Input";
+import { FormInput } from "../components/input/FormInput";
 
 const cardValidationSchema = z.object({
-  cardNumber: z.string().min(19, "número do cartão completo é obrigatório"),
+  cardNumber: z.string().length(19, "número do cartão completo é obrigatório"),
   cardHolder: z.string().trim().min(1, "nome do titular é obrigatório"),
   validity: z.string().length(5, "vencimento é obrigatório"),
-  cvv: z.string().min(3, "CVV é obrigatório"),
+  cvv: z.string().length(3, "CVV é obrigatório"),
 });
 
 type CardFormData = z.infer<typeof cardValidationSchema>;

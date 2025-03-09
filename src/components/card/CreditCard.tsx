@@ -1,24 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../../theme/theme";
+import { useAppSelector } from "../../store/hooks";
 
 interface CreditCardProps {
   cardType?: string;
-  cardHolder?: string;
-  cardNumber?: string;
-  validity?: string;
   backgroundColor?: string;
   textColor?: string;
 }
 
 export const CreditCard: React.FC<CreditCardProps> = ({
   cardType = "Black Card",
-  cardHolder = "João Carlos Pereira",
-  cardNumber = "•••• •••• •••• 2345",
-  validity = "04/32",
   backgroundColor = "#111",
   textColor = theme.colors.white,
 }) => {
+  const { cardNumber, cardHolder, validity } = useAppSelector(
+    (state) => state.card
+  );
+
   return (
     <View style={[styles.cardContainer, { backgroundColor }]}>
       <Text style={[styles.cardType, { color: textColor }]}>{cardType}</Text>

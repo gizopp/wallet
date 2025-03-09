@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import {
   View,
   Text,
+  TextInput,
   TextInputProps,
   Image,
   ImageSourcePropType,
@@ -40,7 +41,7 @@ export const FormInput: React.FC<FormInputProps> = ({ name, ...props }) => {
 
   const value = watch(name) as string;
 
-  const handleChangeText = (text: string, rawText: string) => {
+  const handleChangeText = (text: string, rawText?: string) => {
     setValue(name, text, { shouldValidate: true });
   };
 
@@ -64,6 +65,18 @@ export const Input: React.FC<InputProps> = ({
   error,
   ...textInputProps
 }) => {
+  const handleRegularTextChange = (text: string) => {
+    if (onChangeText) {
+      onChangeText(text, text);
+    }
+  };
+
+  const handleMaskedTextChange = (text: string, rawText: string) => {
+    if (onChangeText) {
+      onChangeText(text, rawText);
+    }
+  };
+
   return (
     <View style={{ width: "100%" }}>
       <Text
@@ -111,21 +124,39 @@ export const Input: React.FC<InputProps> = ({
             />
           </View>
         )}
-        <MaskedTextInput
-          mask={mask}
-          value={value}
-          onChangeText={onChangeText}
-          style={{
-            flex: 1,
-            paddingVertical: 16,
-            paddingRight: 16,
-            paddingLeft: !leftIcon ? 15 : undefined,
-            fontSize: 16,
-            color: theme.colors.black,
-            fontFamily: theme.fontFamily.regular,
-          }}
-          {...textInputProps}
-        />
+
+        {mask ? (
+          <MaskedTextInput
+            mask={mask}
+            value={value}
+            onChangeText={handleMaskedTextChange}
+            style={{
+              flex: 1,
+              paddingVertical: 16,
+              paddingRight: 16,
+              paddingLeft: !leftIcon ? 15 : undefined,
+              fontSize: 16,
+              color: theme.colors.black,
+              fontFamily: theme.fontFamily.regular,
+            }}
+            {...textInputProps}
+          />
+        ) : (
+          <TextInput
+            value={value}
+            onChangeText={handleRegularTextChange}
+            style={{
+              flex: 1,
+              paddingVertical: 16,
+              paddingRight: 16,
+              paddingLeft: !leftIcon ? 15 : undefined,
+              fontSize: 16,
+              color: theme.colors.black,
+              fontFamily: theme.fontFamily.regular,
+            }}
+            {...textInputProps}
+          />
+        )}
       </View>
       {error && (
         <Text
