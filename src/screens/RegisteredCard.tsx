@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
-import { Header } from "../components/header/Header";
+import { RegisterHeader } from "../components/header/RegisterHeader";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
-import { BlackCard } from "../components/card/BlackCard";
+import { CreditCard } from "../components/card/CreditCard";
 
 export const RegisteredCard: React.FC = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -24,13 +24,13 @@ export const RegisteredCard: React.FC = () => {
       showAnimation={showAnimation}
       onAnimationComplete={handleAnimationComplete}
     >
-      <Header />
+      <RegisterHeader />
       <View style={styles.screenContent}>
         {formVisible && (
           <View style={styles.absoluteFormContainer}>
             <Text style={styles.mainTitle}>Wallet Test</Text>
             <Text style={styles.subTitle}>cartão cadastrado com sucesso</Text>
-            <BlackCard />
+            <CreditCard />
             <Button
               text="avançar"
               backgroundColor={theme.colors.lightBlue}

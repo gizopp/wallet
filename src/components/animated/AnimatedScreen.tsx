@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 import { View, StyleSheet, SafeAreaView, Animated, Image } from "react-native";
 import theme from "../../theme/theme";
+import { RegisterHeader } from "../header/RegisterHeader";
 
 type AnimatedBackgroundProps = {
   children: ReactNode;
@@ -71,6 +72,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
+      {!showAnimation && <RegisterHeader />}
       <Animated.View
         style={[styles.topDecoration, { transform: topDecorationTransform }]}
       />

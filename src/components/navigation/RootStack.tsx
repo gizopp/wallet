@@ -3,11 +3,13 @@ import { Home } from "../../screens/Home";
 import { RegisterCard } from "../../screens/RegisterCard";
 import theme from "../../theme/theme";
 import { RegisteredCard } from "../../screens/RegisteredCard";
+import { MyCards } from "../../screens/MyCards";
 
 export type TRootStackParamList = {
   Home: undefined;
   RegisterCard: undefined;
   RegisteredCard: undefined;
+  MyCards: undefined;
 };
 
 const Stack = createStackNavigator<TRootStackParamList>();
@@ -24,6 +26,7 @@ const RootStack = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="RegisterCard" component={RegisterCard} />
       <Stack.Screen name="RegisteredCard" component={RegisteredCard} />
+      <Stack.Screen name="MyCards" component={MyCards} />
     </Stack.Navigator>
   );
 };

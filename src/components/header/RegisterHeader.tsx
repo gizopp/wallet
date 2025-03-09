@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { useNavigation } from "@react-navigation/native";
 
-export const Header = () => {
+export const RegisterHeader = () => {
   const navigation = useNavigation();
   const handleBackPress = () => {
     navigation.goBack();
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     zIndex: 1,
+    marginLeft: 24,
   },
   backButtonText: {
     color: theme.colors.lightBlue,

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
 import { Input } from "../components/input/Input";
-import { Header } from "../components/header/Header";
+import { RegisterHeader } from "../components/header/RegisterHeader";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TRootStackParamList } from "../components/navigation/RootStack";
@@ -31,7 +31,6 @@ export const RegisterCard: React.FC = () => {
       showAnimation={showAnimation}
       onAnimationComplete={handleAnimationComplete}
     >
-      <Header />
       <View style={styles.screenContent}>
         {formVisible && (
           <View style={styles.absoluteFormContainer}>

@@ -3,8 +3,8 @@ import theme from "../../theme/theme";
 
 type TButtonProps = {
   text: string;
-  backgroundColor: ColorValue | undefined;
-  textColor: ColorValue | undefined;
+  backgroundColor?: ColorValue | undefined;
+  textColor?: ColorValue | undefined;
   onPress?: () => void;
 };
 

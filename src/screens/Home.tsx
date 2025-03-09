@@ -26,6 +26,7 @@ export const Home: React.FC = () => {
           text="meus cartões"
           backgroundColor={theme.colors.lightBlue}
           textColor={theme.colors.white}
+          onPress={() => navigation.navigate("MyCards")}
         />
         <Button
           text="cadastrar cartão"
