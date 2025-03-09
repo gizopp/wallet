@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -89,7 +96,10 @@ export const RegisterCard: React.FC = () => {
       showAnimation={showAnimation}
       onAnimationComplete={handleAnimationComplete}
     >
-      <View style={styles.screenContent}>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+        style={styles.screenContent}
+      >
         {formVisible && (
           <View style={styles.absoluteFormContainer}>
             <Text style={styles.mainTitle}>Wallet Test</Text>
@@ -126,7 +136,7 @@ export const RegisterCard: React.FC = () => {
                     <FormInput
                       name="cvv"
                       label="código de segurança"
-                      placeholder="***"
+                      placeholder="•••"
                       keyboardType="numeric"
                       secureTextEntry={true}
                       maxLength={3}
@@ -146,7 +156,7 @@ export const RegisterCard: React.FC = () => {
             </FormProvider>
           </View>
         )}
-      </View>
+      </TouchableWithoutFeedback>
     </AnimatedBackground>
   );
 };
