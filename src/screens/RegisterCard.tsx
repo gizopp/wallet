@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
 import { Input } from "../components/input/Input";
-import { RegisterHeader } from "../components/header/RegisterHeader";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TRootStackParamList } from "../components/navigation/RootStack";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import {
+  setCardNumber,
+  setCardholderName,
+  setExpiryDate,
+  setSecurityCode,
+  handleAdvance,
+} from "../store/slices/cardSlice";
 
 export const RegisterCard: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardholderName, setCardholderName] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [securityCode, setSecurityCode] = useState("");
-  const [showAnimation, setShowAnimation] = useState(false);
-  const [formVisible, setFormVisible] = useState(true);
+  const dispatch = useAppDispatch();
 
-  const handleAdvance = () => {
-    setFormVisible(false);
-    setShowAnimation(true);
+  const {
+    cardNumber,
+    cardholderName,
+    expiryDate,
+    securityCode,
+    showAnimation,
+    formVisible,
+  } = useAppSelector((state) => state.card);
+
+  const handleCardNumberChange = (value: string) => {
+    dispatch(setCardNumber(value));
+  };
+
+  const handleCardholderNameChange = (value: string) => {
+    dispatch(setCardholderName(value));
+  };
+
+  const handleExpiryDateChange = (value: string) => {
+    dispatch(setExpiryDate(value));
+  };
+
+  const handleSecurityCodeChange = (value: string) => {
+    dispatch(setSecurityCode(value));
+  };
+
+  const handleSubmitForm = () => {
+    dispatch(handleAdvance());
   };
 
   const handleAnimationComplete = () => {
@@ -40,7 +66,7 @@ export const RegisterCard: React.FC = () => {
                 label="número do cartão"
                 labelColor={theme.colors.lightGray}
                 value={cardNumber}
-                onChangeText={setCardNumber}
+                onChangeText={handleCardNumberChange}
                 placeholder=""
                 keyboardType="numeric"
                 leftIcon={require("../../assets/images/camera-icon.png")}
@@ -49,7 +75,7 @@ export const RegisterCard: React.FC = () => {
               <Input
                 label="nome do titular do cartão"
                 value={cardholderName}
-                onChangeText={setCardholderName}
+                onChangeText={handleCardholderNameChange}
                 placeholder=""
               />
               <View style={styles.rowInputs}>
@@ -57,7 +83,7 @@ export const RegisterCard: React.FC = () => {
                   <Input
                     label="vencimento"
                     value={expiryDate}
-                    onChangeText={setExpiryDate}
+                    onChangeText={handleExpiryDateChange}
                     placeholder="00/00"
                     keyboardType="numeric"
                     maxLength={5}
@@ -68,7 +94,7 @@ export const RegisterCard: React.FC = () => {
                   <Input
                     label="código de segurança"
                     value={securityCode}
-                    onChangeText={setSecurityCode}
+                    onChangeText={handleSecurityCodeChange}
                     placeholder="***"
                     keyboardType="numeric"
                     secureTextEntry={true}
@@ -81,7 +107,7 @@ export const RegisterCard: React.FC = () => {
                 text="avançar"
                 backgroundColor={theme.colors.lightBlue}
                 textColor={theme.colors.white}
-                onPress={handleAdvance}
+                onPress={handleSubmitForm}
               />
             </View>
           </View>
