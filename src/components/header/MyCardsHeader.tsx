@@ -1,13 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { TRootStackParamList } from "../navigation/RootStack";
 
 export const MyCardsHeader = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
   const handleBackPress = () => {
-    navigation.goBack();
+    navigation.navigate("Home");
+  };
+
+  const handleAddPress = () => {
+    navigation.navigate("RegisterCard");
   };
 
   return (
@@ -24,7 +29,7 @@ export const MyCardsHeader = () => {
           </Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Wallet Test</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleAddPress}>
           <Text
             style={{
               fontSize: theme.fontSize.h1,

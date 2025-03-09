@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
-import { RegisterHeader } from "../components/header/RegisterHeader";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
 import { CreditCard } from "../components/card/CreditCard";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TRootStackParamList } from "../components/navigation/RootStack";
 
 export const RegisteredCard: React.FC = () => {
+  const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
+
   const [showAnimation, setShowAnimation] = useState(false);
   const [formVisible, setFormVisible] = useState(true);
 
   const handleAdvance = () => {
-    setFormVisible(false);
-    setShowAnimation(true);
+    navigation.navigate("MyCards");
   };
 
   const handleAnimationComplete = () => {
@@ -24,7 +26,6 @@ export const RegisteredCard: React.FC = () => {
       showAnimation={showAnimation}
       onAnimationComplete={handleAnimationComplete}
     >
-      <RegisterHeader />
       <View style={styles.screenContent}>
         {formVisible && (
           <View style={styles.absoluteFormContainer}>
