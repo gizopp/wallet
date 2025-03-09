@@ -107,7 +107,7 @@ export const Input: React.FC<InputProps> = ({
               width: 32,
               height: 32,
               backgroundColor: theme.colors.lightBlue,
-              borderRadius: theme.borderRadius.big,
+              borderRadius: theme.borderRadius.large,
               marginLeft: 10,
               marginRight: 8,
               justifyContent: "center",

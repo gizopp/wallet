@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     backgroundColor: theme.colors.white,
     height: 70,
-    borderBottomRightRadius: theme.borderRadius.big,
-    borderBottomLeftRadius: theme.borderRadius.big,
+    borderBottomRightRadius: theme.borderRadius.large,
+    borderBottomLeftRadius: theme.borderRadius.large,
     position: "relative",
   },
   headerGradient: {

@@ -24,7 +24,7 @@ const fontSize = {
 
 const borderRadius = {
   default: scale(12),
-  big: scale(50),
+  large: scale(50),
 };
 
 const fontFamily = {

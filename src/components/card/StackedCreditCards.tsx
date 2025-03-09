@@ -5,20 +5,18 @@ import { ICreditCard } from "../../types/creditCard";
 
 interface StackedCreditCardsProps {
   cards: ICreditCard[];
-  cardOffset?: number;
   onCardPress?: (cardId: string) => void;
 }
 
-const DEFAULT_OFFSET = 0;
-
 export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
   cards,
-  cardOffset = DEFAULT_OFFSET,
   onCardPress,
 }) => {
+  const offset = 60;
+
   const getContainerHeight = () => {
     if (cards.length === 0) return 0;
-    return 180 + (cards.length - 1) * cardOffset;
+    return 180 + (cards.length - 1) * offset;
   };
 
   return (
@@ -29,7 +27,7 @@ export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
           style={[
             styles.cardWrapper,
             {
-              top: index * cardOffset,
+              top: index * offset,
               zIndex: cards.length + index,
             },
           ]}
