@@ -1,4 +1,5 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 import {
   View,
   Text,
@@ -17,7 +18,41 @@ interface InputProps extends Omit<TextInputProps, "value" | "onChangeText"> {
   mask?: string;
   value?: string;
   onChangeText?: (text: string, rawText: string) => void;
+  error?: string;
 }
+
+interface FormInputProps
+  extends Omit<InputProps, "error" | "value" | "onChangeText"> {
+  name: string;
+}
+
+export const FormInput: React.FC<FormInputProps> = ({ name, ...props }) => {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext();
+
+  React.useEffect(() => {
+    register(name);
+  }, [register, name]);
+
+  const value = watch(name) as string;
+
+  const handleChangeText = (text: string, rawText: string) => {
+    setValue(name, text, { shouldValidate: true });
+  };
+
+  return (
+    <Input
+      {...props}
+      value={value || ""}
+      error={(errors[name]?.message as string) || undefined}
+      onChangeText={handleChangeText}
+    />
+  );
+};
 
 export const Input: React.FC<InputProps> = ({
   label,
@@ -26,6 +61,7 @@ export const Input: React.FC<InputProps> = ({
   mask,
   value,
   onChangeText,
+  error,
   ...textInputProps
 }) => {
   return (
@@ -48,6 +84,8 @@ export const Input: React.FC<InputProps> = ({
           backgroundColor: theme.colors.white,
           borderRadius: 6,
           overflow: "hidden",
+          borderWidth: error ? 1 : 0,
+          borderColor: error ? "red" : "transparent",
         }}
       >
         {leftIcon && (
@@ -81,7 +119,7 @@ export const Input: React.FC<InputProps> = ({
             flex: 1,
             paddingVertical: 16,
             paddingRight: 16,
-            paddingLeft: !leftIcon && 15,
+            paddingLeft: !leftIcon ? 15 : undefined,
             fontSize: 16,
             color: theme.colors.black,
             fontFamily: theme.fontFamily.regular,
@@ -89,6 +127,18 @@ export const Input: React.FC<InputProps> = ({
           {...textInputProps}
         />
       </View>
+      {error && (
+        <Text
+          style={{
+            color: "red",
+            fontSize: 12,
+            marginTop: 4,
+            fontFamily: theme.fontFamily.regular,
+          }}
+        >
+          {error}
+        </Text>
+      )}
     </View>
   );
 };

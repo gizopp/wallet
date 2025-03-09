@@ -6,17 +6,7 @@ import theme from "../theme/theme";
 import { MyCardsHeader } from "../components/header/MyCardsHeader";
 import { Button } from "../components/button/Button";
 import { StackedCreditCards } from "../components/card/StackedCreditCards";
-
-// Definição da interface para os dados do cartão
-interface CardData {
-  id: string;
-  cardType: string;
-  cardHolder: string;
-  cardNumber: string;
-  validity: string;
-  backgroundColor: string;
-  textColor?: string;
-}
+import { CardData } from "../types/card";
 
 export const MyCards: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();

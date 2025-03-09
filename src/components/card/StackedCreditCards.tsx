@@ -1,16 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { CreditCard } from "./CreditCard";
-
-interface CardData {
-  id: string;
-  cardType: string;
-  cardHolder: string;
-  cardNumber: string;
-  validity: string;
-  backgroundColor: string;
-  textColor?: string;
-}
+import { CardData } from "../../types/card";
 
 interface StackedCreditCardsProps {
   cards: CardData[];

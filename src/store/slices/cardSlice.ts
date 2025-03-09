@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CardState {
   cardNumber: string;
-  cardholderName: string;
-  expiryDate: string;
-  securityCode: string;
+  cardHolder: string;
+  validity: string;
+  cvv: string;
   showAnimation: boolean;
   formVisible: boolean;
 }
 
 const initialState: CardState = {
   cardNumber: "",
-  cardholderName: "",
-  expiryDate: "",
-  securityCode: "",
+  cardHolder: "",
+  validity: "",
+  cvv: "",
   showAnimation: false,
   formVisible: true,
 };
@@ -25,14 +25,14 @@ const cardSlice = createSlice({
     setCardNumber: (state, action: PayloadAction<string>) => {
       state.cardNumber = action.payload;
     },
-    setCardholderName: (state, action: PayloadAction<string>) => {
-      state.cardholderName = action.payload;
+    setCardHolder: (state, action: PayloadAction<string>) => {
+      state.cardHolder = action.payload;
     },
-    setExpiryDate: (state, action: PayloadAction<string>) => {
-      state.expiryDate = action.payload;
+    setValidity: (state, action: PayloadAction<string>) => {
+      state.validity = action.payload;
     },
-    setSecurityCode: (state, action: PayloadAction<string>) => {
-      state.securityCode = action.payload;
+    setCvv: (state, action: PayloadAction<string>) => {
+      state.cvv = action.payload;
     },
     setShowAnimation: (state, action: PayloadAction<boolean>) => {
       state.showAnimation = action.payload;
@@ -52,9 +52,9 @@ const cardSlice = createSlice({
 
 export const {
   setCardNumber,
-  setCardholderName,
-  setExpiryDate,
-  setSecurityCode,
+  setCardHolder,
+  setValidity,
+  setCvv,
   setShowAnimation,
   setFormVisible,
   resetCardForm,
