@@ -39,13 +39,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginVertical: 32,
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    elevation: 12,
   },
   cardType: {
     fontSize: 18,
