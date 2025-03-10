@@ -25,6 +25,7 @@ import {
 } from "../store/slices/cardSlice";
 import { cardService } from "../services/cardService";
 import { FormInput } from "../components/input/FormInput";
+import { showToast } from "../utils/showToast";
 
 const cardValidationSchema = z.object({
   cardNumber: z.string().length(19, "número do cartão completo é obrigatório"),
@@ -78,7 +79,19 @@ export const RegisterCard: React.FC = () => {
 
   const onSubmit = async (data: CardFormData) => {
     try {
-      await cardService.saveCard(data);
+      const existingCards = await cardService.getCards();
+
+      if (existingCards.length >= 3) {
+        showToast({
+          title: "Erro",
+          message:
+            "Limite máximo de 3 cartões atingido. Por favor, exclua um cartão antes de adicionar um novo.",
+        });
+        return null;
+      }
+
+      await cardService.saveCard(data, dispatch);
+
       dispatch(handleAdvance());
     } catch (error) {
       Alert.alert("Erro", "Erro ao salvar dados do cartão. Tente novamente.", [

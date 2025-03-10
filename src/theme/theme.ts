@@ -14,6 +14,24 @@ const colors = {
   lightGray: "#bbb",
 };
 
+const cardTypes = {
+  light: {
+    backgroundColor: "#12C2E9",
+    textColor: "#fff",
+    cardType: "Light Card",
+  },
+  green: {
+    backgroundColor: "#A5FF32",
+    textColor: "#000",
+    cardType: "Green Card",
+  },
+  black: {
+    backgroundColor: "#111",
+    textColor: "#fff",
+    cardType: "Black Card",
+  },
+};
+
 const fontSize = {
   h1: moderateScale(28),
   h2: moderateScale(22),
@@ -50,6 +68,7 @@ const theme = {
   borderRadius,
   fonts,
   scaling,
+  cardTypes,
 };
 
 export default theme;

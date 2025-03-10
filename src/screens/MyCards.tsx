@@ -1,21 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import theme from "../theme/theme";
 import { MyCardsHeader } from "../components/header/MyCardsHeader";
 import { Button } from "../components/button/Button";
 import { StackedCreditCards } from "../components/card/StackedCreditCards";
+import { ICreditCard } from "../types/creditCard";
+import { cardService } from "../services/cardService";
 
 export const MyCards: React.FC = () => {
+  const [cards, setCards] = useState<ICreditCard[]>([]);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchCards = async () => {
+        try {
+          const fetchedCards = await cardService.getCards();
+          setCards(fetchedCards);
+          if (fetchedCards.length > 0) {
+            setSelectedCardId(fetchedCards[fetchedCards.length - 1].id);
+          } else {
+            setSelectedCardId(null);
+          }
+        } catch (error) {
+          console.error("Failed to fetch cards:", error);
+        }
+      };
+
+      fetchCards();
+    }, [])
+  );
+
+  const handleCardPress = (cardId: string) => {
+    setSelectedCardId(cardId);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <MyCardsHeader />
       <View style={styles.contentContainer}>
         <View style={styles.cardsContainer}>
-          <StackedCreditCards />
+          <StackedCreditCards
+            cards={cards}
+            onCardPress={handleCardPress}
+            selectedCardId={selectedCardId}
+          />
         </View>
         <View style={styles.actionContainer}>
           <Text style={styles.useCardText}>usar esse cartão</Text>
-          <Button text="pagar com este cartão" />
+          <Button text="pagar com este cartão" disabled={!selectedCardId} />
         </View>
       </View>
     </SafeAreaView>

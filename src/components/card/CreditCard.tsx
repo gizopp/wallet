@@ -1,19 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { ICreditCard } from "../../types/creditCard";
 
-export const CreditCard: React.FC<Omit<ICreditCard, "id" | "cvv">> = ({
+export const CreditCard: React.FC<Omit<ICreditCard, "cvv">> = ({
+  id,
   cardType,
   cardHolder,
   cardNumber,
   validity,
   backgroundColor = theme.colors.lightBlue,
   textColor = theme.colors.white,
+  onCardPress,
 }) => {
   return (
-    <View style={[styles.cardContainer, { backgroundColor }]}>
-      <Text style={[styles.cardType, { color: textColor }]}>{cardType}</Text>
+    <TouchableOpacity
+      style={[styles.cardContainer, { backgroundColor }]}
+      onPress={onCardPress}
+      activeOpacity={0.95}
+    >
+      <View>
+        <Text style={[styles.cardType, { color: textColor }]}>{cardType}</Text>
+      </View>
       <View style={styles.cardDetails}>
         <Text style={[styles.cardHolder, { color: textColor }]}>
           {cardHolder}
@@ -25,7 +33,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "id" | "cvv">> = ({
           Validade {validity}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

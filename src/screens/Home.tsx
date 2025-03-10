@@ -5,12 +5,13 @@ import { TRootStackParamList } from "../components/navigation/RootStack";
 import { Button } from "../components/button/Button";
 import { Background } from "../components/background/Background";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { AnimatedBackground } from "../components/animated/AnimatedScreen";
 
 export const Home: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
 
   return (
-    <Background>
+    <AnimatedBackground showHeader={false}>
       <Text
         style={{
           fontFamily: theme.fontFamily.regular,
@@ -35,6 +36,6 @@ export const Home: React.FC = () => {
           onPress={() => navigation.navigate("RegisterCard")}
         />
       </View>
-    </Background>
+    </AnimatedBackground>
   );
 };

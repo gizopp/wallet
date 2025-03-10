@@ -7,12 +7,14 @@ type AnimatedBackgroundProps = {
   children: ReactNode;
   showAnimation?: boolean;
   onAnimationComplete?: () => void;
+  showHeader?: boolean;
 };
 
 export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   children,
   showAnimation = false,
   onAnimationComplete,
+  showHeader = true,
 }) => {
   const topPositionAnim = useRef(new Animated.Value(0)).current;
   const bottomPositionAnim = useRef(new Animated.Value(0)).current;
@@ -91,7 +93,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      {!showAnimation && <RegisterHeader />}
+      {!showAnimation && showHeader && <RegisterHeader />}
       <Animated.View
         style={[
           styles.topDecoration,

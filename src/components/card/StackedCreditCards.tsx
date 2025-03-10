@@ -1,54 +1,56 @@
-import React, { useEffect, useState, useRef } from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Text } from "react-native";
 import { CreditCard } from "./CreditCard";
 import { ICreditCard } from "../../types/creditCard";
-import { cardService } from "../../services/cardService";
 
 interface StackedCreditCardsProps {
+  cards: ICreditCard[];
   onCardPress?: (cardId: string) => void;
+  selectedCardId: string | null;
 }
 
 export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
+  cards,
   onCardPress,
+  selectedCardId,
 }) => {
-  const [cards, setCards] = useState<ICreditCard[]>([]);
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
-  const flatListRef = useRef<FlatList<ICreditCard>>(null);
+  const [orderedCards, setOrderedCards] = useState<ICreditCard[]>([]);
 
-  const handleCardPress = (cardId: string) => {
-    setSelectedCard(cardId);
-
-    const cardIndex = cards.findIndex((card) => card.id === cardId);
-    if (cardIndex !== cards.length - 1) {
-      const newOrderedCards = [...cards];
-      const selectedCard = newOrderedCards[cardIndex];
-      newOrderedCards.splice(cardIndex, 1);
-      newOrderedCards.push(selectedCard);
-      setCards(newOrderedCards);
+  useEffect(() => {
+    if (cards.length === 0) {
+      setOrderedCards([]);
+      return;
     }
 
+    if (selectedCardId) {
+      const cardIndex = cards.findIndex((card) => card.id === selectedCardId);
+      if (cardIndex !== -1 && cardIndex !== cards.length - 1) {
+        const cardsWithoutSelected = cards.filter(
+          (card) => card.id !== selectedCardId
+        );
+        const selectedCard = cards.find((card) => card.id === selectedCardId);
+        if (selectedCard) {
+          setOrderedCards([...cardsWithoutSelected, selectedCard]);
+          return;
+        }
+      }
+    }
+
+    setOrderedCards([...cards]);
+  }, [cards, selectedCardId]);
+
+  const handleCardPress = (cardId: string) => {
     if (onCardPress) {
       onCardPress(cardId);
     }
   };
 
   const offset = 60;
-  const getContainerHeight = () => {
-    if (cards.length === 0) return 0;
-    return 240 + (cards.length - 1) * offset;
-  };
 
-  useEffect(() => {
-    const fetchCards = async () => {
-      const fetchedCards = await cardService.getCards();
-      console.log("FETCHED: ", fetchedCards);
-      setCards(fetchedCards);
-      if (fetchedCards.length > 0) {
-        setSelectedCard(fetchedCards[fetchedCards.length - 1].id);
-      }
-    };
-    fetchCards();
-  }, []);
+  const getContainerHeight = () => {
+    if (orderedCards.length === 0) return 0;
+    return 240 + (orderedCards.length - 1) * offset;
+  };
 
   const renderItem = ({
     item,
@@ -57,44 +59,41 @@ export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
     item: ICreditCard;
     index: number;
   }) => (
-    <TouchableOpacity
+    <View
       key={item.id}
       style={[
         styles.cardWrapper,
         {
           top: index * offset,
-          zIndex: cards.length + index,
+          zIndex: orderedCards.length + index,
         },
       ]}
-      onPress={() => handleCardPress(item.id)}
-      activeOpacity={0.95}
+      pointerEvents="box-none"
     >
       <CreditCard
+        id={item.id}
         cardType={item.cardType}
         cardHolder={item.cardHolder}
         cardNumber={item.cardNumber}
         validity={item.validity}
         backgroundColor={item.backgroundColor}
         textColor={item.textColor}
+        onCardPress={() => handleCardPress(item.id)}
       />
-    </TouchableOpacity>
+    </View>
   );
+
+  if (orderedCards.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>Nenhum cartão cadastrado</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { height: getContainerHeight() }]}>
-      <FlatList
-        ref={flatListRef}
-        data={cards}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        scrollEnabled={false}
-        removeClippedSubviews={false}
-        CellRendererComponent={({ children, index, style, ...props }) => (
-          <View style={[style]} {...props}>
-            {children}
-          </View>
-        )}
-      />
+      {orderedCards.map((item, index) => renderItem({ item, index }))}
     </View>
   );
 };
@@ -107,5 +106,17 @@ const styles = StyleSheet.create({
   cardWrapper: {
     position: "absolute",
     width: "100%",
+  },
+  emptyContainer: {
+    width: "100%",
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 16,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: "#666",
   },
 });

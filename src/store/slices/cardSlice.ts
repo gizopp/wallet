@@ -5,6 +5,9 @@ interface CardState {
   cardHolder: string;
   validity: string;
   cvv: string;
+  backgroundColor: string;
+  textColor: string;
+  cardType: string;
   showAnimation: boolean;
   formVisible: boolean;
 }
@@ -14,6 +17,9 @@ const initialState: CardState = {
   cardHolder: "",
   validity: "",
   cvv: "",
+  backgroundColor: "",
+  textColor: "",
+  cardType: "",
   showAnimation: false,
   formVisible: true,
 };
@@ -34,14 +40,20 @@ const cardSlice = createSlice({
     setCvv: (state, action: PayloadAction<string>) => {
       state.cvv = action.payload;
     },
+    setBackgroundColor: (state, action: PayloadAction<string>) => {
+      state.backgroundColor = action.payload;
+    },
+    setTextColor: (state, action: PayloadAction<string>) => {
+      state.textColor = action.payload;
+    },
+    setCardType: (state, action: PayloadAction<string>) => {
+      state.cardType = action.payload;
+    },
     setShowAnimation: (state, action: PayloadAction<boolean>) => {
       state.showAnimation = action.payload;
     },
     setFormVisible: (state, action: PayloadAction<boolean>) => {
       state.formVisible = action.payload;
-    },
-    resetCardForm: (state) => {
-      return initialState;
     },
     handleAdvance: (state) => {
       state.formVisible = false;
@@ -55,9 +67,11 @@ export const {
   setCardHolder,
   setValidity,
   setCvv,
+  setBackgroundColor,
+  setTextColor,
+  setCardType,
   setShowAnimation,
   setFormVisible,
-  resetCardForm,
   handleAdvance,
 } = cardSlice.actions;
 
