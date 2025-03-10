@@ -96,11 +96,11 @@ export const RegisterCard: React.FC = () => {
       showAnimation={showAnimation}
       onAnimationComplete={handleAnimationComplete}
     >
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        style={styles.screenContent}
-      >
-        {formVisible && (
+      {formVisible && (
+        <TouchableWithoutFeedback
+          onPress={Keyboard.dismiss}
+          style={styles.screenContent}
+        >
           <View style={styles.absoluteFormContainer}>
             <Text style={styles.mainTitle}>Wallet Test</Text>
             <FormProvider {...formMethods}>
@@ -155,8 +155,8 @@ export const RegisterCard: React.FC = () => {
               </View>
             </FormProvider>
           </View>
-        )}
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      )}
     </AnimatedBackground>
   );
 };

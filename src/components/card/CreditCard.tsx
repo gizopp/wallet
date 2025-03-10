@@ -1,18 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import theme from "../../theme/theme";
-import { useAppSelector } from "../../store/hooks";
 import { ICreditCard } from "../../types/creditCard";
 
 export const CreditCard: React.FC<Omit<ICreditCard, "id" | "cvv">> = ({
-  cardType = "Black Card",
-  backgroundColor = "#111",
+  cardType,
+  cardHolder,
+  cardNumber,
+  validity,
+  backgroundColor = theme.colors.lightBlue,
   textColor = theme.colors.white,
 }) => {
-  const { cardNumber, cardHolder, validity } = useAppSelector(
-    (state) => state.card
-  );
-
   return (
     <View style={[styles.cardContainer, { backgroundColor }]}>
       <Text style={[styles.cardType, { color: textColor }]}>{cardType}</Text>

@@ -24,11 +24,9 @@ export const Button = ({
         padding: 16,
         borderRadius: theme.borderRadius.default,
         alignItems: "center",
-        opacity: disabled ? 0.7 : 1,
       }}
       onPress={onPress}
       disabled={disabled}
-      activeOpacity={disabled ? 1 : 0.7}
     >
       <Text
         style={{

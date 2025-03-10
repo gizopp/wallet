@@ -14,24 +14,29 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   showAnimation = false,
   onAnimationComplete,
 }) => {
-  const topDecorationAnim = useRef(new Animated.Value(0)).current;
-  const bottomDecorationAnim = useRef(new Animated.Value(0)).current;
+  const topPositionAnim = useRef(new Animated.Value(0)).current;
+  const bottomPositionAnim = useRef(new Animated.Value(0)).current;
   const iconOpacity = useRef(new Animated.Value(0)).current;
+
+  const topScaleX = useRef(new Animated.Value(1)).current;
+  const bottomScaleX = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     if (showAnimation) {
-      topDecorationAnim.setValue(0);
-      bottomDecorationAnim.setValue(0);
+      topPositionAnim.setValue(0);
+      bottomPositionAnim.setValue(0);
       iconOpacity.setValue(0);
+      topScaleX.setValue(1);
+      bottomScaleX.setValue(1);
 
       Animated.sequence([
         Animated.parallel([
-          Animated.timing(topDecorationAnim, {
+          Animated.timing(topPositionAnim, {
             toValue: 1,
             duration: 800,
             useNativeDriver: true,
           }),
-          Animated.timing(bottomDecorationAnim, {
+          Animated.timing(bottomPositionAnim, {
             toValue: 1,
             duration: 800,
             useNativeDriver: true,
@@ -42,6 +47,18 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
           duration: 400,
           useNativeDriver: true,
         }),
+        Animated.parallel([
+          Animated.timing(topScaleX, {
+            toValue: 400 / 350,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(bottomScaleX, {
+            toValue: 450 / 350,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]),
       ]).start(() => {
         if (onAnimationComplete) {
           onAnimationComplete();
@@ -53,34 +70,43 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   const topDecorationTransform = [
     { rotate: "315deg" },
     {
-      translateY: topDecorationAnim.interpolate({
+      translateY: topPositionAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [-150, -50],
       }),
     },
+    { scaleX: topScaleX },
   ];
 
   const bottomDecorationTransform = [
     { rotate: "315deg" },
     {
-      translateY: bottomDecorationAnim.interpolate({
+      translateY: bottomPositionAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [150, 0],
       }),
     },
+    { scaleX: bottomScaleX },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
       {!showAnimation && <RegisterHeader />}
       <Animated.View
-        style={[styles.topDecoration, { transform: topDecorationTransform }]}
+        style={[
+          styles.topDecoration,
+          {
+            transform: topDecorationTransform,
+          },
+        ]}
       />
       <View style={styles.content}>{children}</View>
       <Animated.View
         style={[
           styles.bottomDecoration,
-          { transform: bottomDecorationTransform },
+          {
+            transform: bottomDecorationTransform,
+          },
         ]}
       />
       {showAnimation && (
@@ -110,9 +136,9 @@ const styles = StyleSheet.create({
   },
   topDecoration: {
     position: "absolute",
-    top: -40,
-    left: -100,
-    width: 450,
+    top: -5,
+    left: -30,
+    width: 350,
     height: 300,
     backgroundColor: theme.colors.white,
     borderRadius: theme.borderRadius.large,
@@ -121,9 +147,9 @@ const styles = StyleSheet.create({
   },
   bottomDecoration: {
     position: "absolute",
-    bottom: -70,
-    right: -160,
-    width: 450,
+    bottom: -5,
+    right: -30,
+    width: 350,
     height: 300,
     backgroundColor: theme.colors.white,
     borderRadius: theme.borderRadius.large,

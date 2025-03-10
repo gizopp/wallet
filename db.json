@@ -7,7 +7,17 @@
       "validity": "06/12",
       "cvv": "123",
       "cardType": "default",
-      "backgroundColor": "#EFEFEF",
+      "backgroundColor": "#12C2E9",
+      "textColor": "#fff"
+    },
+    {
+      "id": "38c3",
+      "cardNumber": "5765 8756 7576 5757",
+      "cardHolder": "Sarah Goulart",
+      "validity": "12/12",
+      "cvv": "123",
+      "cardType": "default",
+      "backgroundColor": "#A5FF32",
       "textColor": "#000000"
     }
   ]
