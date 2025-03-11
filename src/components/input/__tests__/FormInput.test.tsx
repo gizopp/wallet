@@ -1,15 +1,25 @@
 import React, { ReactNode } from "react";
-import { render, screen } from "@testing-library/react-native";
+import { render, screen, fireEvent, act } from "@testing-library/react-native";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
+import { Image } from "react-native";
+import theme from "../../../theme/theme";
 
-const FormInputWrapper = ({ children }: { children: ReactNode }) => {
+jest.mock("../../../../assets/images/camera-icon.png", () => "mocked-icon");
+
+const FormInputWrapper = ({
+  children,
+  defaultValues = {},
+}: {
+  children: ReactNode;
+  defaultValues?: Record<string, any>;
+}) => {
   const methods = useForm({
     defaultValues: {
       cardHolder: "",
+      ...defaultValues,
     },
   });
-
   return <FormProvider {...methods}>{children}</FormProvider>;
 };
 
@@ -24,7 +34,6 @@ describe("FormInput", () => {
         />
       </FormInputWrapper>
     );
-
     const labelElement = screen.getByText("nome do titular do cartão");
     expect(labelElement).toBeTruthy();
   });
@@ -35,10 +44,139 @@ describe("FormInput", () => {
         <FormInput
           name="cardHolder"
           label="nome do titular do cartão"
-          labelColor="#FF0000"
+          labelColor={theme.colors.darkBlue}
           placeholder=""
         />
       </FormInputWrapper>
     );
+    const labelElement = screen.getByText("nome do titular do cartão");
+    expect(labelElement.props.style).toEqual(
+      expect.objectContaining({
+        color: theme.colors.darkBlue,
+      })
+    );
+  });
+
+  test("renders with a left icon when provided", () => {
+    const iconSource = { uri: "mocked-icon" };
+
+    render(
+      <FormInputWrapper>
+        <FormInput
+          name="cardHolder"
+          label="nome do titular do cartão"
+          leftIcon={iconSource}
+          placeholder=""
+        />
+      </FormInputWrapper>
+    );
+
+    const imageElement = screen.UNSAFE_getByType(Image);
+    expect(imageElement).toBeTruthy();
+    expect(imageElement.props.source).toEqual(iconSource);
+  });
+
+  test("updates form value when text is entered", () => {
+    const { getByPlaceholderText } = render(
+      <FormInputWrapper>
+        <FormInput
+          name="cardHolder"
+          label="nome do titular do cartão"
+          placeholder="Digite o nome"
+        />
+      </FormInputWrapper>
+    );
+
+    const inputElement = getByPlaceholderText("Digite o nome");
+
+    act(() => {
+      fireEvent.changeText(inputElement, "John Doe");
+    });
+
+    expect(inputElement.props.value).toBe("John Doe");
+  });
+
+  test("applies mask when mask prop is provided", () => {
+    const { getByPlaceholderText } = render(
+      <FormInputWrapper>
+        <FormInput
+          name="cardNumber"
+          label="Número do cartão"
+          placeholder="0000 0000 0000 0000"
+          mask="9999 9999 9999 9999"
+        />
+      </FormInputWrapper>
+    );
+
+    const input = getByPlaceholderText("0000 0000 0000 0000");
+
+    act(() => {
+      fireEvent.changeText(input, "4111111111111111");
+    });
+
+    expect(input.props.value).toBe("4111 1111 1111 1111");
+  });
+
+  test("initializes with default value when provided", () => {
+    render(
+      <FormInputWrapper defaultValues={{ cardHolder: "John Doe" }}>
+        <FormInput
+          name="cardHolder"
+          label="nome do titular do cartão"
+          placeholder=""
+        />
+      </FormInputWrapper>
+    );
+
+    const input = screen.getByDisplayValue("John Doe");
+    expect(input).toBeTruthy();
+  });
+
+  test("calls register on mount", () => {
+    const mockRegister = jest.fn();
+    const mockSetValue = jest.fn();
+    const mockWatch = jest.fn(() => "");
+
+    const MockFormProvider = ({ children }: { children: ReactNode }) => {
+      const formContextValue = {
+        register: mockRegister,
+        setValue: mockSetValue,
+        watch: mockWatch,
+        formState: { errors: {} },
+      };
+
+      return (
+        <FormProvider {...(formContextValue as any)}>{children}</FormProvider>
+      );
+    };
+
+    render(
+      <MockFormProvider>
+        <FormInput
+          name="cardHolder"
+          label="nome do titular do cartão"
+          placeholder=""
+        />
+      </MockFormProvider>
+    );
+
+    expect(mockRegister).toHaveBeenCalledWith("cardHolder");
+  });
+
+  test("handles disabled state correctly", () => {
+    const { getByTestId } = render(
+      <FormInputWrapper>
+        <FormInput
+          name="cardHolder"
+          label="nome do titular do cartão"
+          placeholder=""
+          editable={false}
+          testID="input-field"
+        />
+      </FormInputWrapper>
+    );
+
+    const input = getByTestId("input-field");
+    expect(input.props.editable).toBe(false);
   });
 });

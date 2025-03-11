@@ -20,6 +20,7 @@ interface InputProps extends Omit<TextInputProps, "value" | "onChangeText"> {
   value?: string;
   onChangeText?: (text: string, rawText: string) => void;
   error?: string;
+  testID?: string;
 }
 
 interface FormInputProps
@@ -63,6 +64,7 @@ export const Input: React.FC<InputProps> = ({
   value,
   onChangeText,
   error,
+  testID,
   ...textInputProps
 }) => {
   const handleRegularTextChange = (text: string) => {
@@ -139,6 +141,7 @@ export const Input: React.FC<InputProps> = ({
               color: theme.colors.black,
               fontFamily: theme.fontFamily.regular,
             }}
+            testID={testID}
             {...textInputProps}
           />
         ) : (
@@ -154,6 +157,7 @@ export const Input: React.FC<InputProps> = ({
               color: theme.colors.black,
               fontFamily: theme.fontFamily.regular,
             }}
+            testID={testID}
             {...textInputProps}
           />
         )}
