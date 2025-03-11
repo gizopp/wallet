@@ -21,14 +21,6 @@ export const cardService = {
   saveCard: async (cardFormData: CardFormData, dispatch: any) => {
     try {
       const existingCards = await cardService.getCards();
-      if (existingCards.length >= MAX_CARDS) {
-        showToast({
-          title: "Erro",
-          message:
-            "Limite máximo de 3 cartões atingido. Por favor, exclua um cartão antes de adicionar um novo.",
-        });
-        return null;
-      }
 
       type CardTypeKey = keyof typeof theme.cardTypes;
       const usedCardTypes = existingCards.map((card) => card.cardType);
@@ -73,11 +65,6 @@ export const cardService = {
         });
         throw new Error(`Failed to save card: ${response.status}`);
       }
-
-      showToast({
-        title: "Sucesso",
-        message: "Cartão adicionado com sucesso",
-      });
 
       return await response.json();
     } catch (error) {
