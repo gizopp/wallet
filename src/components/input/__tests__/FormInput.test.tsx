@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { render, screen } from "@testing-library/react-native";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
 
-const FormInputWrapper = ({ children }) => {
+const FormInputWrapper = ({ children }: { children: ReactNode }) => {
   const methods = useForm({
     defaultValues: {
       cardHolder: "",
