@@ -5,6 +5,6 @@ export interface ICreditCard {
   cardNumber: string;
   validity: string;
   cvv: string;
-  backgroundColor: string;
+  backgroundColor?: string;
   textColor?: string;
 }

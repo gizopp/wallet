@@ -23,10 +23,7 @@ export const RegisteredCard: React.FC = () => {
 
   useEffect(() => {
     dispatch(setShowAnimation(false));
-
     dispatch(setFormVisible(true));
-
-    console.log("RegisteredCard mounted - Animation state reset");
   }, [dispatch]);
 
   const handleAdvance = () => {

@@ -3,33 +3,55 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { ICreditCard } from "../../types/creditCard";
 
-export const CreditCard: React.FC<Omit<ICreditCard, "cvv">> = ({
-  id,
+export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
   cardType,
   cardHolder,
   cardNumber,
   validity,
-  backgroundColor = theme.colors.lightBlue,
-  textColor = theme.colors.white,
+  backgroundColor,
+  textColor,
   onCardPress,
 }) => {
+  const getCardStyle = () => {
+    let bgColor = theme.colors.lightBlue;
+    let txtColor = theme.colors.white;
+
+    if (cardType === "Light Card") {
+      bgColor = theme.cardTypes.light.backgroundColor;
+      txtColor = theme.cardTypes.light.textColor;
+    } else if (cardType === "Green Card") {
+      bgColor = theme.cardTypes.green.backgroundColor;
+      txtColor = theme.cardTypes.green.textColor;
+    } else if (cardType === "Black Card") {
+      bgColor = theme.cardTypes.black.backgroundColor;
+      txtColor = theme.cardTypes.black.textColor;
+    }
+
+    return {
+      backgroundColor: backgroundColor || bgColor,
+      textColor: textColor || txtColor,
+    };
+  };
+
+  const { backgroundColor: bgColor, textColor: txtColor } = getCardStyle();
+
   return (
     <TouchableOpacity
-      style={[styles.cardContainer, { backgroundColor }]}
+      style={[styles.cardContainer, { backgroundColor: bgColor }]}
       onPress={onCardPress}
       activeOpacity={0.95}
     >
       <View>
-        <Text style={[styles.cardType, { color: textColor }]}>{cardType}</Text>
+        <Text style={[styles.cardType, { color: txtColor }]}>{cardType}</Text>
       </View>
       <View style={styles.cardDetails}>
-        <Text style={[styles.cardHolder, { color: textColor }]}>
+        <Text style={[styles.cardHolder, { color: txtColor }]}>
           {cardHolder}
         </Text>
-        <Text style={[styles.cardNumber, { color: textColor }]}>
+        <Text style={[styles.cardNumber, { color: txtColor }]}>
           {cardNumber}
         </Text>
-        <Text style={[styles.validityLabel, { color: textColor }]}>
+        <Text style={[styles.validityLabel, { color: txtColor }]}>
           Validade {validity}
         </Text>
       </View>
