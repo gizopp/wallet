@@ -129,10 +129,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
-    borderRadius: 16,
+    borderRadius: theme.borderRadius.medium,
   },
   emptyText: {
-    fontSize: 16,
+    fontSize: theme.fontSize.h4,
     color: "#666",
   },
 });

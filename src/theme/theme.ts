@@ -43,6 +43,7 @@ const fontSize = {
 
 const borderRadius = {
   default: scale(12),
+  medium: scale(16),
   large: scale(50),
 };
 

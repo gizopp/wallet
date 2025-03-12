@@ -136,7 +136,7 @@ export const Input: React.FC<InputProps> = ({
               paddingVertical: 16,
               paddingRight: 16,
               paddingLeft: !leftIcon ? 15 : undefined,
-              fontSize: 16,
+              fontSize: theme.fontSize.h4,
               color: theme.colors.black,
               fontFamily: theme.fontFamily.regular,
             }}
@@ -152,7 +152,7 @@ export const Input: React.FC<InputProps> = ({
               paddingVertical: 16,
               paddingRight: 16,
               paddingLeft: !leftIcon ? 15 : undefined,
-              fontSize: 16,
+              fontSize: theme.fontSize.h4,
               color: theme.colors.black,
             }}
             testID={testID}

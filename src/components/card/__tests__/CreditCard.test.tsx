@@ -84,7 +84,7 @@ describe("CreditCard", () => {
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
       expect.objectContaining({
-        fontSize: 18,
+        fontSize: theme.fontSize.h3,
         fontFamily: theme.fontFamily.regular,
       })
     );
@@ -92,7 +92,7 @@ describe("CreditCard", () => {
     const cardHolderText = getByText("GIOVANA ZOPELARO");
     expect(cardHolderText.props.style).toEqual(
       expect.objectContaining({
-        fontSize: 16,
+        fontSize: theme.fontSize.h4,
         fontFamily: theme.fontFamily.regular,
       })
     );
@@ -100,7 +100,7 @@ describe("CreditCard", () => {
     const cardNumberText = getByText("•••• •••• •••• 1234");
     expect(cardNumberText.props.style).toEqual(
       expect.objectContaining({
-        fontSize: 14,
+        fontSize: theme.fontSize.h5,
         fontFamily: theme.fontFamily.regular,
       })
     );

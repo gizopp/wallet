@@ -48,7 +48,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
       style={{
         height: 180,
         width: "100%",
-        borderRadius: 16,
+        borderRadius: theme.borderRadius.medium,
         paddingVertical: 28,
         paddingHorizontal: 20,
         justifyContent: "space-around",
@@ -66,7 +66,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
       <View>
         <CustomText
           style={{
-            fontSize: 18,
+            fontSize: theme.fontSize.h3,
             color: txtColor,
           }}
         >
@@ -77,7 +77,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
       <View style={{ marginTop: 20 }}>
         <CustomText
           style={{
-            fontSize: 16,
+            fontSize: theme.fontSize.h4,
             marginBottom: 2,
             color: txtColor,
           }}
@@ -87,7 +87,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
 
         <CustomText
           style={{
-            fontSize: 14,
+            fontSize: theme.fontSize.h5,
             marginBottom: 2,
             color: txtColor,
           }}
@@ -97,7 +97,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
 
         <CustomText
           style={{
-            fontSize: 14,
+            fontSize: theme.fontSize.h5,
             color: txtColor,
           }}
         >
