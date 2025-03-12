@@ -36,8 +36,8 @@ describe("CreditCard", () => {
   it("applies custom background and text colors", () => {
     const customProps = {
       ...defaultProps,
-      backgroundColor: "#FF0000",
-      textColor: "#00FF00",
+      backgroundColor: theme.colors.red,
+      textColor: theme.colors.darkBlue,
     };
     const { getByText, UNSAFE_getByProps } = render(
       <CreditCard {...customProps} />
@@ -46,14 +46,14 @@ describe("CreditCard", () => {
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
       expect.objectContaining({
-        backgroundColor: "#FF0000",
+        backgroundColor: theme.colors.red,
       })
     );
 
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
       expect.objectContaining({
-        color: "#00FF00",
+        color: theme.colors.darkBlue,
       })
     );
   });

@@ -133,6 +133,6 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: theme.fontSize.h4,
-    color: "#666",
+    color: theme.colors.gray,
   },
 });

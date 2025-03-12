@@ -15,7 +15,7 @@ const CustomToast = () => {
         style={{
           borderLeftColor: theme.colors.darkBlue,
           width: "90%",
-          backgroundColor: "white",
+          backgroundColor: theme.colors.white,
         }}
         text1Style={styles.title}
         text2Style={styles.message}
@@ -30,11 +30,11 @@ const CustomToast = () => {
     title: {
       fontSize: 15,
       fontWeight: "600",
-      color: "black",
+      color: theme.colors.black,
     },
     message: {
       fontSize: 13,
-      color: "#333",
+      color: theme.colors.darkGray,
     },
   });
 

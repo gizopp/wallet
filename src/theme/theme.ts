@@ -13,6 +13,8 @@ const colors = {
   softBlack: "#111",
   gray: "#eee",
   lightGray: "#bbb",
+  darkGray: "#333",
+  red: "#ff0000",
 };
 
 const cardTypes = {

@@ -99,7 +99,7 @@ export const Input: React.FC<InputProps> = ({
           borderRadius: 6,
           overflow: "hidden",
           borderWidth: error ? 1 : 0,
-          borderColor: error ? "red" : "transparent",
+          borderColor: error ? theme.colors.red : "transparent",
         }}
       >
         {leftIcon && (
@@ -163,7 +163,7 @@ export const Input: React.FC<InputProps> = ({
       {error && (
         <CustomText
           style={{
-            color: "red",
+            color: theme.colors.red,
             fontSize: 12,
             marginTop: 4,
             fontFamily: theme.fontFamily.regular,
