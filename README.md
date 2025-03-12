@@ -31,7 +31,7 @@ npm install
 yarn install
 ```
 
-## Inicializando a API Mock
+## Inicializando a API
 O projeto utiliza json-server para simular uma API REST:
 
 ```bash
