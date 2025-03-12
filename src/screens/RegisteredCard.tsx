@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import theme from "../theme/theme";
 import { Button } from "../components/button/Button";
 import { AnimatedBackground } from "../components/animated/AnimatedScreen";
@@ -8,6 +8,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TRootStackParamList } from "../components/navigation/RootStack";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { setShowAnimation, setFormVisible } from "../store/slices/cardSlice";
+import CustomText from "../components/text/CustomText";
 
 export const RegisteredCard: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
@@ -34,8 +35,10 @@ export const RegisteredCard: React.FC = () => {
     <AnimatedBackground showAnimation={false}>
       <View style={styles.screenContent}>
         <View style={styles.absoluteFormContainer}>
-          <Text style={styles.mainTitle}>Wallet Test</Text>
-          <Text style={styles.subTitle}>cartão cadastrado com sucesso</Text>
+          <CustomText style={styles.mainTitle}>Wallet Test</CustomText>
+          <CustomText style={styles.subTitle}>
+            cartão cadastrado com sucesso
+          </CustomText>
           <CreditCard
             cardHolder={cardHolder}
             cardNumber={cardNumber}
@@ -72,14 +75,12 @@ const styles = StyleSheet.create({
   mainTitle: {
     color: theme.colors.white,
     fontSize: theme.fontSize.h1,
-    fontFamily: theme.fontFamily.regular,
     marginBottom: 8,
     textAlign: "center",
   },
   subTitle: {
     color: theme.colors.white,
     fontSize: theme.fontSize.h3,
-    fontFamily: theme.fontFamily.regular,
     marginBottom: 8,
     textAlign: "center",
   },

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
@@ -12,6 +11,7 @@ import { AnimatedBackground } from "../components/animated/AnimatedScreen";
 import { TRootStackParamList } from "../components/navigation/RootStack";
 import { useAppSelector } from "../store/hooks";
 import { RegisterCardForm } from "../components/RegisterCardForm/RegisterCardForm";
+import CustomText from "../components/text/CustomText";
 
 export const RegisterCard: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
@@ -32,7 +32,7 @@ export const RegisterCard: React.FC = () => {
           style={styles.screenContent}
         >
           <View style={styles.absoluteFormContainer}>
-            <Text style={styles.mainTitle}>Wallet Test</Text>
+            <CustomText style={styles.mainTitle}>Wallet Test</CustomText>
             <RegisterCardForm />
           </View>
         </TouchableWithoutFeedback>
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
   mainTitle: {
     color: theme.colors.white,
     fontSize: theme.fontSize.h1,
-    fontFamily: theme.fontFamily.regular,
     marginBottom: 30,
     textAlign: "center",
   },

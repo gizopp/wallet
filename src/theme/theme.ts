@@ -2,7 +2,7 @@ import {
   PTSansCaption_400Regular,
   PTSansCaption_700Bold,
 } from "@expo-google-fonts/pt-sans-caption";
-import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+import { moderateScale, scale } from "react-native-size-matters";
 
 const colors = {
   darkBlue: "#142995",
@@ -10,24 +10,25 @@ const colors = {
   neon: "#A5FF32",
   white: "#fff",
   black: "#000",
+  softBlack: "#111",
   gray: "#eee",
   lightGray: "#bbb",
 };
 
 const cardTypes = {
   light: {
-    backgroundColor: "#12C2E9",
-    textColor: "#fff",
+    backgroundColor: colors.lightBlue,
+    textColor: colors.white,
     cardType: "Light Card",
   },
   green: {
-    backgroundColor: "#A5FF32",
-    textColor: "#000",
+    backgroundColor: colors.neon,
+    textColor: colors.black,
     cardType: "Green Card",
   },
   black: {
-    backgroundColor: "#111",
-    textColor: "#fff",
+    backgroundColor: colors.softBlack,
+    textColor: colors.white,
     cardType: "Black Card",
   },
 };
@@ -55,19 +56,12 @@ const fonts = {
   PTSansCaption_700Bold,
 };
 
-const scaling = {
-  moderateScale,
-  scale,
-  verticalScale,
-};
-
 const theme = {
   colors,
   fontSize,
   fontFamily,
   borderRadius,
   fonts,
-  scaling,
   cardTypes,
 };
 

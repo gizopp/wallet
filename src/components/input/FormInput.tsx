@@ -2,7 +2,6 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import {
   View,
-  Text,
   TextInput,
   TextInputProps,
   Image,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import { MaskedTextInput } from "react-native-mask-text";
 import theme from "../../theme/theme";
+import CustomText from "../text/CustomText";
 
 interface InputProps extends Omit<TextInputProps, "value" | "onChangeText"> {
   label: string;
@@ -81,17 +81,16 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <View style={{ width: "100%" }}>
-      <Text
+      <CustomText
         style={{
           color: labelColor || theme.colors.white,
           marginBottom: 8,
           fontSize: theme.fontSize.h5,
-          fontFamily: theme.fontFamily.regular,
         }}
         numberOfLines={1}
       >
         {label}
-      </Text>
+      </CustomText>
       <View
         style={{
           flexDirection: "row",
@@ -155,7 +154,6 @@ export const Input: React.FC<InputProps> = ({
               paddingLeft: !leftIcon ? 15 : undefined,
               fontSize: 16,
               color: theme.colors.black,
-              fontFamily: theme.fontFamily.regular,
             }}
             testID={testID}
             {...textInputProps}
@@ -163,7 +161,7 @@ export const Input: React.FC<InputProps> = ({
         )}
       </View>
       {error && (
-        <Text
+        <CustomText
           style={{
             color: "red",
             fontSize: 12,
@@ -172,7 +170,7 @@ export const Input: React.FC<InputProps> = ({
           }}
         >
           {error}
-        </Text>
+        </CustomText>
       )}
     </View>
   );

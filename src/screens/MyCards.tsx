@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   useCardText: {
     textAlign: "center",
     color: theme.colors.white,
-    fontFamily: theme.fontFamily.regular,
     fontSize: theme.fontSize.h4,
     marginBottom: 16,
   },

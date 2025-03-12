@@ -1,6 +1,7 @@
-import { TouchableOpacity, Text, ColorValue } from "react-native";
+import { TouchableOpacity, ColorValue } from "react-native";
 import theme from "../../theme/theme";
 import React from "react";
+import CustomText from "../text/CustomText";
 
 type TButtonProps = {
   text: string;
@@ -32,16 +33,15 @@ export const Button = ({
       onPress={onPress}
       disabled={disabled}
     >
-      <Text
+      <CustomText
         testID="button-text"
         style={{
-          fontFamily: theme.fontFamily.regular,
           color: disabled ? theme.colors.lightGray : textColor,
           fontSize: theme.fontSize.h4,
         }}
       >
         {text}
-      </Text>
+      </CustomText>
     </TouchableOpacity>
   );
 };

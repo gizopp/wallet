@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { useNavigation } from "@react-navigation/native";
+import CustomText from "../text/CustomText";
 
 export const RegisterHeader = () => {
   const navigation = useNavigation();
@@ -12,10 +13,10 @@ export const RegisterHeader = () => {
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-        <Text style={styles.backButtonText}>←</Text>
+        <CustomText style={styles.backButtonText}>←</CustomText>
       </TouchableOpacity>
       <View style={styles.titleContainer}>
-        <Text style={styles.headerTitle}>cadastro</Text>
+        <CustomText style={styles.headerTitle}>cadastro</CustomText>
       </View>
     </View>
   );
@@ -48,6 +49,5 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: theme.colors.lightBlue,
     fontSize: 24,
-    fontFamily: theme.fontFamily.regular,
   },
 });

@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TRootStackParamList } from "../navigation/RootStack";
+import CustomText from "../text/CustomText";
 
 export const MyCardsHeader = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
@@ -19,32 +20,32 @@ export const MyCardsHeader = () => {
     <View style={{ minHeight: 136 }}>
       <View style={styles.header}>
         <TouchableOpacity onPress={handleBackPress}>
-          <Text
+          <CustomText
             style={{
               fontSize: theme.fontSize.h2,
               color: theme.colors.lightBlue,
             }}
           >
             ←
-          </Text>
+          </CustomText>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Wallet Test</Text>
+        <CustomText style={styles.headerTitle}>Wallet Test</CustomText>
         <TouchableOpacity onPress={handleAddPress}>
-          <Text
+          <CustomText
             style={{
               fontSize: theme.fontSize.h1,
               color: theme.colors.lightBlue,
             }}
           >
             +
-          </Text>
+          </CustomText>
         </TouchableOpacity>
       </View>
       <View style={styles.subHeader}>
-        <Text style={styles.headerSubtitle}>Meus cartões</Text>
+        <CustomText style={styles.headerSubtitle}>Meus cartões</CustomText>
         <LinearGradient
           style={styles.headerGradient}
-          colors={["#000", "rgba(0,0,0,0.3)", "transparent"]}
+          colors={[theme.colors.black, "rgba(0,0,0,0.3)", "transparent"]}
           locations={[0, 0.3, 1]}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
@@ -85,13 +86,11 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: theme.fontSize.h2,
-    fontFamily: theme.fontFamily.regular,
     color: theme.colors.darkBlue,
   },
   headerSubtitle: {
     fontSize: 20,
     textAlign: "center",
-    fontFamily: theme.fontFamily.regular,
     color: theme.colors.lightBlue,
     zIndex: 2,
   },

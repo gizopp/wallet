@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import theme from "../../theme/theme";
 import { ICreditCard } from "../../types/creditCard";
+import CustomText from "../text/CustomText";
 
 export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
   cardType,
@@ -15,6 +16,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
   const getCardStyle = () => {
     let bgColor = theme.colors.lightBlue;
     let txtColor = theme.colors.white;
+
     if (cardType === "Light Card") {
       bgColor = theme.cardTypes.light.backgroundColor;
       txtColor = theme.cardTypes.light.textColor;
@@ -25,6 +27,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
       bgColor = theme.cardTypes.black.backgroundColor;
       txtColor = theme.cardTypes.black.textColor;
     }
+
     return {
       backgroundColor: backgroundColor || bgColor,
       textColor: textColor || txtColor,
@@ -35,72 +38,72 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
 
   const formatCardNumber = (number: string) => {
     const cleanNumber = number.replace(/\s+/g, "");
-
     const lastFourDigits = cleanNumber.slice(-4);
-
     const maskedSection = "•••• •••• •••• ";
-
     return maskedSection + lastFourDigits;
   };
 
   return (
     <TouchableOpacity
-      style={[styles.cardContainer, { backgroundColor: bgColor }]}
+      style={{
+        height: 180,
+        width: "100%",
+        borderRadius: 16,
+        paddingVertical: 28,
+        paddingHorizontal: 20,
+        justifyContent: "space-around",
+        marginVertical: 32,
+        backgroundColor: bgColor,
+        shadowColor: theme.colors.black,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.5,
+        shadowRadius: 8,
+        elevation: 12,
+      }}
       onPress={onCardPress}
       activeOpacity={0.95}
     >
       <View>
-        <Text style={[styles.cardType, { color: txtColor }]}>{cardType}</Text>
+        <CustomText
+          style={{
+            fontSize: 18,
+            color: txtColor,
+          }}
+        >
+          {cardType}
+        </CustomText>
       </View>
-      <View style={styles.cardDetails}>
-        <Text style={[styles.cardHolder, { color: txtColor }]}>
+
+      <View style={{ marginTop: 20 }}>
+        <CustomText
+          style={{
+            fontSize: 16,
+            marginBottom: 2,
+            color: txtColor,
+          }}
+        >
           {cardHolder}
-        </Text>
-        <Text style={[styles.cardNumber, { color: txtColor }]}>
+        </CustomText>
+
+        <CustomText
+          style={{
+            fontSize: 14,
+            marginBottom: 2,
+            color: txtColor,
+          }}
+        >
           {formatCardNumber(cardNumber)}
-        </Text>
-        <Text style={[styles.validityLabel, { color: txtColor }]}>
+        </CustomText>
+
+        <CustomText
+          style={{
+            fontSize: 14,
+            color: txtColor,
+          }}
+        >
           Validade {validity}
-        </Text>
+        </CustomText>
       </View>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    height: 180,
-    width: "100%",
-    borderRadius: 16,
-    paddingVertical: 28,
-    paddingHorizontal: 20,
-    justifyContent: "space-around",
-    marginVertical: 32,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-    elevation: 12,
-  },
-  cardType: {
-    fontSize: 18,
-    fontFamily: theme.fontFamily.regular,
-  },
-  cardDetails: {
-    marginTop: 20,
-  },
-  cardHolder: {
-    fontSize: 16,
-    fontFamily: theme.fontFamily.regular,
-    marginBottom: 2,
-  },
-  cardNumber: {
-    fontSize: 14,
-    fontFamily: theme.fontFamily.regular,
-    marginBottom: 2,
-  },
-  validityLabel: {
-    fontSize: 14,
-    fontFamily: theme.fontFamily.regular,
-  },
-});

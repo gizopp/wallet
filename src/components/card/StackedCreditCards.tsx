@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { CreditCard } from "./CreditCard";
 import { ICreditCard } from "../../types/creditCard";
 import theme from "../../theme/theme";
+import CustomText from "../text/CustomText";
 
 interface StackedCreditCardsProps {
   cards: ICreditCard[];
@@ -87,7 +88,9 @@ export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
   if (orderedCards.length === 0) {
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>Nenhum cartão cadastrado</Text>
+        <CustomText style={styles.emptyText}>
+          Nenhum cartão cadastrado
+        </CustomText>
       </View>
     );
   }
@@ -97,17 +100,16 @@ export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
       <View style={[styles.container, { height: getContainerHeight() }]}>
         {orderedCards.map((item, index) => renderItem({ item, index }))}
       </View>
-      <Text
+      <CustomText
         style={{
           textAlign: "center",
           color: theme.colors.white,
-          fontFamily: theme.fontFamily.regular,
           fontSize: theme.fontSize.h4,
           marginBottom: 16,
         }}
       >
         usar esse cartão
-      </Text>
+      </CustomText>
     </>
   );
 };
