@@ -3,7 +3,7 @@ import { Home } from "../../screens/Home/Home";
 import { RegisterCard } from "../../screens/RegisterCard";
 import theme from "../../theme/theme";
 import { RegisteredCard } from "../../screens/RegisteredCard";
-import { MyCards } from "../../screens/MyCards/MyCards";
+import { MyCards } from "../../screens/MyCards";
 
 export type TRootStackParamList = {
   Home: undefined;

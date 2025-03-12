@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import theme from "../../theme/theme";
-import { MyCardsHeader } from "../../components/header/MyCardsHeader";
-import { Button } from "../../components/button/Button";
-import { StackedCreditCards } from "../../components/card/StackedCreditCards";
-import { ICreditCard } from "../../types/creditCard";
-import { cardService } from "../../services/cardService";
+import theme from "../theme/theme";
+import { MyCardsHeader } from "../components/header/MyCardsHeader";
+import { Button } from "../components/button/Button";
+import { StackedCreditCards } from "../components/card/StackedCreditCards";
+import { ICreditCard } from "../types/creditCard";
+import { cardService } from "../services/cardService";
 
 export const MyCards: React.FC = () => {
   const [cards, setCards] = useState<ICreditCard[]>([]);
@@ -15,16 +15,12 @@ export const MyCards: React.FC = () => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchCards = async () => {
-        try {
-          const fetchedCards = await cardService.getCards();
-          setCards(fetchedCards);
-          if (fetchedCards.length > 0) {
-            setSelectedCardId(fetchedCards[fetchedCards.length - 1].id);
-          } else {
-            setSelectedCardId(null);
-          }
-        } catch (error) {
-          console.error("Failed to fetch cards:", error);
+        const fetchedCards = await cardService.getCards();
+        setCards(fetchedCards);
+        if (fetchedCards.length > 0) {
+          setSelectedCardId(fetchedCards[fetchedCards.length - 1].id);
+        } else {
+          setSelectedCardId(null);
         }
       };
 
