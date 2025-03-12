@@ -2,8 +2,6 @@
 
 Aplicativo de carteira digital desenvolvido com React Native e Expo.
 
-Este projeto foi desenvolvido como parte de um teste técnico da empresa VR.
-
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter instalado em sua máquina:
