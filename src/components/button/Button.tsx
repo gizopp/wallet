@@ -9,6 +9,7 @@ type TButtonProps = {
   disabled?: boolean;
 };
 
+// Adicione um testID ao TouchableOpacity para facilitar o teste
 export const Button = ({
   text,
   backgroundColor = theme.colors.lightBlue,
@@ -18,6 +19,7 @@ export const Button = ({
 }: TButtonProps) => {
   return (
     <TouchableOpacity
+      testID="button-touchable"
       style={{
         backgroundColor: disabled ? theme.colors.gray : backgroundColor,
         width: "100%",
@@ -29,6 +31,7 @@ export const Button = ({
       disabled={disabled}
     >
       <Text
+        testID="button-text"
         style={{
           fontFamily: theme.fontFamily.regular,
           color: disabled ? theme.colors.lightGray : textColor,
