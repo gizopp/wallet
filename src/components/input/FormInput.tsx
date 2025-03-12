@@ -42,7 +42,7 @@ export const FormInput: React.FC<FormInputProps> = ({ name, ...props }) => {
 
   const value = watch(name) as string;
 
-  const handleChangeText = (text: string, rawText?: string) => {
+  const handleChangeText = (text: string) => {
     setValue(name, text, { shouldValidate: true });
   };
 

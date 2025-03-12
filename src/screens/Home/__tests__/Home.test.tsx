@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import { createStackNavigator } from "@react-navigation/stack";
 import theme from "../../../theme/theme";
 import { Home } from "../Home";
 
@@ -21,12 +20,14 @@ jest.mock(
 );
 
 jest.mock("react-native-reanimated", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const Reanimated = require("react-native-reanimated/mock");
   Reanimated.default.call = () => {};
   return Reanimated;
 });
 
 jest.mock("react-native-gesture-handler", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const View = require("react-native").View;
   return {
     Swipeable: View,
@@ -73,7 +74,13 @@ jest.mock("react-hook-form", () => ({
     reset: jest.fn(),
     trigger: jest.fn(),
   }),
-  Controller: ({ render }) =>
+  Controller: ({
+    render,
+  }: {
+    render: (props: {
+      field: { value: string; onChange: jest.Mock; onBlur: jest.Mock };
+    }) => React.ReactNode;
+  }) =>
     render({ field: { value: "", onChange: jest.fn(), onBlur: jest.fn() } }),
 }));
 

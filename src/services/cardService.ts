@@ -1,3 +1,4 @@
+import { Dispatch } from "@reduxjs/toolkit";
 import {
   setBackgroundColor,
   setCardType,
@@ -8,7 +9,6 @@ import { ICreditCard } from "../types/creditCard";
 import { showToast } from "../utils/showToast";
 
 const API_URL = "http://localhost:3000";
-const MAX_CARDS = 3;
 
 export interface CardFormData {
   cardNumber: string;
@@ -18,7 +18,7 @@ export interface CardFormData {
 }
 
 export const cardService = {
-  saveCard: async (cardFormData: CardFormData, dispatch: any) => {
+  saveCard: async (cardFormData: CardFormData, dispatch: Dispatch) => {
     try {
       const existingCards = await cardService.getCards();
 

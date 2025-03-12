@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, ColorValue } from "react-native";
 import theme from "../../theme/theme";
+import React from "react";
 
 type TButtonProps = {
   text: string;

@@ -18,7 +18,7 @@ const FormInputWrapper = ({
   defaultValues = {},
 }: {
   children: ReactNode;
-  defaultValues?: Record<string, any>;
+  defaultValues?: Record<string, unknown>;
 }) => {
   const methods = useForm({
     defaultValues: {
@@ -158,6 +158,7 @@ describe("FormInput", () => {
       };
 
       return (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         <FormProvider {...(formContextValue as any)}>{children}</FormProvider>
       );
     };

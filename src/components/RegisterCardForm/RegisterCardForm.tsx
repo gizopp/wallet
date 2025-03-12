@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import theme from "../../theme/theme";
 import { Button } from "../../components/button/Button";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import {
   setCardNumber,
   setCardHolder,
@@ -105,7 +105,7 @@ export const RegisterCardForm: React.FC<RegisterCardFormProps> = ({
       if (onSubmitSuccess) {
         onSubmitSuccess();
       }
-    } catch (error) {
+    } catch {
       Alert.alert("Erro", "Erro ao salvar dados do cartão. Tente novamente.", [
         { text: "OK" },
       ]);
@@ -121,6 +121,7 @@ export const RegisterCardForm: React.FC<RegisterCardFormProps> = ({
           labelColor={theme.colors.lightGray}
           placeholder=""
           keyboardType="numeric"
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
           leftIcon={require("../../../assets/images/camera-icon.png")}
           mask="9999 9999 9999 9999"
         />

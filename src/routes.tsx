@@ -4,7 +4,6 @@ import store from "./store";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./components/navigation/RootStack";
 import { CustomToast } from "./utils/showToast";
-import { SafeAreaView } from "react-native";
 
 const Routes = () => {
   return (

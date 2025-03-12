@@ -39,7 +39,7 @@ describe("StackedCreditCards", () => {
   ];
 
   it("renders correctly with cards", () => {
-    const { getByText, getAllByText, queryByText } = render(
+    const { getByText, queryByText } = render(
       <StackedCreditCards cards={mockCards} selectedCardId={null} />
     );
 
@@ -84,9 +84,9 @@ describe("StackedCreditCards", () => {
       <StackedCreditCards cards={mockCards} selectedCardId={null} />
     );
 
-    let lightCards = getAllByText("Light Card");
-    let greenCards = getAllByText("Green Card");
-    let blackCards = getAllByText("Black Card");
+    const lightCards = getAllByText("Light Card");
+    const greenCards = getAllByText("Green Card");
+    const blackCards = getAllByText("Black Card");
 
     expect(lightCards.length).toBe(1);
     expect(greenCards.length).toBe(1);

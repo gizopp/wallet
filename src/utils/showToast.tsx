@@ -1,6 +1,7 @@
 import Toast, { BaseToast } from "react-native-toast-message";
 import { StyleSheet } from "react-native";
 import theme from "../theme/theme";
+import React from "react";
 
 interface ToastParams {
   title: string;
@@ -9,7 +10,7 @@ interface ToastParams {
 
 const CustomToast = () => {
   const toastConfig = {
-    info: ({ text1, text2 }: any) => (
+    info: ({ text1, text2 }: { text1: string; text2: string }) => (
       <BaseToast
         style={{
           borderLeftColor: theme.colors.darkBlue,

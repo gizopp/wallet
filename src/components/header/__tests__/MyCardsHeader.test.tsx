@@ -15,9 +15,10 @@ jest.mock("@react-navigation/native", () => {
 });
 
 jest.mock("expo-linear-gradient", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { View } = require("react-native");
   return {
-    LinearGradient: (props: any) => (
+    LinearGradient: (props: React.ComponentProps<typeof View>) => (
       <View {...props} testID="linear-gradient" />
     ),
   };

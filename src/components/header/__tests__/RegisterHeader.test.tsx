@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { View } from "react-native";
 import { RegisterHeader } from "../RegisterHeader";
 
 const mockGoBack = jest.fn();

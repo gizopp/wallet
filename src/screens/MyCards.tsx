@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import theme from "../theme/theme";
 import { MyCardsHeader } from "../components/header/MyCardsHeader";

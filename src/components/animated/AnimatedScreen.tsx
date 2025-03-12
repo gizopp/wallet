@@ -114,6 +114,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
       {showAnimation && (
         <Animated.View style={[styles.iconContainer, { opacity: iconOpacity }]}>
           <Image
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
             source={require("../../../assets/images/icon.png")}
             style={styles.icon}
             resizeMode="contain"

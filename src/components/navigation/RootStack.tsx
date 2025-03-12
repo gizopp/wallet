@@ -4,6 +4,7 @@ import { RegisterCard } from "../../screens/RegisterCard";
 import theme from "../../theme/theme";
 import { RegisteredCard } from "../../screens/RegisteredCard";
 import { MyCards } from "../../screens/MyCards";
+import React from "react";
 
 export type TRootStackParamList = {
   Home: undefined;
