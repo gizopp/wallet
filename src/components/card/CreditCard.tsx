@@ -15,7 +15,6 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
   const getCardStyle = () => {
     let bgColor = theme.colors.lightBlue;
     let txtColor = theme.colors.white;
-
     if (cardType === "Light Card") {
       bgColor = theme.cardTypes.light.backgroundColor;
       txtColor = theme.cardTypes.light.textColor;
@@ -26,7 +25,6 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
       bgColor = theme.cardTypes.black.backgroundColor;
       txtColor = theme.cardTypes.black.textColor;
     }
-
     return {
       backgroundColor: backgroundColor || bgColor,
       textColor: textColor || txtColor,
@@ -34,6 +32,16 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
   };
 
   const { backgroundColor: bgColor, textColor: txtColor } = getCardStyle();
+
+  const formatCardNumber = (number: string) => {
+    const cleanNumber = number.replace(/\s+/g, "");
+
+    const lastFourDigits = cleanNumber.slice(-4);
+
+    const maskedSection = "•••• •••• •••• ";
+
+    return maskedSection + lastFourDigits;
+  };
 
   return (
     <TouchableOpacity
@@ -49,7 +57,7 @@ export const CreditCard: React.FC<Omit<ICreditCard, "cvv" | "id">> = ({
           {cardHolder}
         </Text>
         <Text style={[styles.cardNumber, { color: txtColor }]}>
-          {cardNumber}
+          {formatCardNumber(cardNumber)}
         </Text>
         <Text style={[styles.validityLabel, { color: txtColor }]}>
           Validade {validity}
