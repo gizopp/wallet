@@ -86,11 +86,6 @@ O projeto utiliza ESLint para garantir a qualidade do código:
 npm run lint
 # OU
 yarn lint
-
-# Corrigir automaticamente problemas de linting
-npm run lint:fix
-# OU
-yarn lint:fix
 ```
 
 ## Tecnologias Principais
