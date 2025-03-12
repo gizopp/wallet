@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "api": "json-server --watch db.json"
   },
   "dependencies": {
     "@expo-google-fonts/pt-sans-caption": "^0.2.3",
