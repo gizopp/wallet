@@ -20,7 +20,21 @@ import { showToast } from "../../utils/showToast";
 const cardValidationSchema = z.object({
   cardNumber: z.string().length(19, "número do cartão completo é obrigatório"),
   cardHolder: z.string().trim().min(1, "nome do titular é obrigatório"),
-  validity: z.string().length(5, "vencimento é obrigatório"),
+  validity: z
+    .string()
+    .length(5, "vencimento é obrigatório")
+    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "formato deve ser MM/AA")
+    .refine(
+      (value) => {
+        const [month, year] = value.split("/");
+        const expDate = new Date(2000 + parseInt(year), parseInt(month) - 1);
+        const today = new Date();
+        today.setDate(1);
+        today.setHours(0, 0, 0, 0);
+        return expDate >= today;
+      },
+      { message: "cartão expirado" }
+    ),
   cvv: z.string().length(3, "CVV é obrigatório"),
 });
 
