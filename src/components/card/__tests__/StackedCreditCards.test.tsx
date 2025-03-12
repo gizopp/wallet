@@ -30,7 +30,7 @@ describe("StackedCreditCards", () => {
       id: "card3",
       cardType: "Black Card",
       cardHolder: "Bob Johnson",
-      cardNumber: "3782 822463 10005",
+      cardNumber: "3782 8224 0005 4535",
       validity: "05/27",
       cvv: "678",
       backgroundColor: theme.cardTypes.black.backgroundColor,
@@ -43,9 +43,9 @@ describe("StackedCreditCards", () => {
       <StackedCreditCards cards={mockCards} selectedCardId={null} />
     );
 
-    expect(getByText("4111 1111 1111 1111")).toBeTruthy();
-    expect(getByText("5555 5555 5555 4444")).toBeTruthy();
-    expect(getByText("3782 822463 10005")).toBeTruthy();
+    expect(getByText("•••• •••• •••• 1111")).toBeTruthy();
+    expect(getByText("•••• •••• •••• 4444")).toBeTruthy();
+    expect(getByText("•••• •••• •••• 4535")).toBeTruthy();
 
     expect(getByText("John Doe")).toBeTruthy();
     expect(getByText("Jane Smith")).toBeTruthy();
@@ -96,9 +96,9 @@ describe("StackedCreditCards", () => {
 
     const cardNumbers = getAllByText(/\d{4}/);
 
-    expect(cardNumbers[0].props.children).toBe("5555 5555 5555 4444");
-    expect(cardNumbers[1].props.children).toBe("3782 822463 10005");
-    expect(cardNumbers[2].props.children).toBe("4111 1111 1111 1111");
+    expect(cardNumbers[0].props.children).toBe("•••• •••• •••• 4444");
+    expect(cardNumbers[1].props.children).toBe("•••• •••• •••• 4535");
+    expect(cardNumbers[2].props.children).toBe("•••• •••• •••• 1111");
   });
 
   it("handles selecting card that is already at the top", () => {

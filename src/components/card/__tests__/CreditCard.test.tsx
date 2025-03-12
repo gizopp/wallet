@@ -45,20 +45,16 @@ describe("CreditCard", () => {
 
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          backgroundColor: "#FF0000",
-        }),
-      ])
+      expect.objectContaining({
+        backgroundColor: "#FF0000",
+      })
     );
 
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          color: "#00FF00",
-        }),
-      ])
+      expect.objectContaining({
+        color: "#00FF00",
+      })
     );
   });
 
@@ -69,20 +65,16 @@ describe("CreditCard", () => {
 
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          backgroundColor: theme.colors.lightBlue,
-        }),
-      ])
+      expect.objectContaining({
+        backgroundColor: theme.colors.lightBlue,
+      })
     );
 
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          color: theme.colors.white,
-        }),
-      ])
+      expect.objectContaining({
+        color: theme.colors.white,
+      })
     );
   });
 
@@ -91,32 +83,26 @@ describe("CreditCard", () => {
 
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: 18,
-          fontFamily: theme.fontFamily.regular,
-        }),
-      ])
+      expect.objectContaining({
+        fontSize: 18,
+        fontFamily: theme.fontFamily.regular,
+      })
     );
 
     const cardHolderText = getByText("GIOVANA ZOPELARO");
     expect(cardHolderText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: 16,
-          fontFamily: theme.fontFamily.regular,
-        }),
-      ])
+      expect.objectContaining({
+        fontSize: 16,
+        fontFamily: theme.fontFamily.regular,
+      })
     );
 
     const cardNumberText = getByText("•••• •••• •••• 1234");
     expect(cardNumberText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: 14,
-          fontFamily: theme.fontFamily.regular,
-        }),
-      ])
+      expect.objectContaining({
+        fontSize: 14,
+        fontFamily: theme.fontFamily.regular,
+      })
     );
   });
 
@@ -132,20 +118,16 @@ describe("CreditCard", () => {
 
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          backgroundColor: theme.cardTypes.light.backgroundColor,
-        }),
-      ])
+      expect.objectContaining({
+        backgroundColor: theme.cardTypes.light.backgroundColor,
+      })
     );
 
     const cardTypeText = getByText("Light Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          color: theme.cardTypes.light.textColor,
-        }),
-      ])
+      expect.objectContaining({
+        color: theme.cardTypes.light.textColor,
+      })
     );
   });
 
@@ -161,20 +143,16 @@ describe("CreditCard", () => {
 
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          backgroundColor: theme.cardTypes.green.backgroundColor,
-        }),
-      ])
+      expect.objectContaining({
+        backgroundColor: theme.cardTypes.green.backgroundColor,
+      })
     );
 
     const cardTypeText = getByText("Green Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          color: theme.cardTypes.green.textColor,
-        }),
-      ])
+      expect.objectContaining({
+        color: theme.cardTypes.green.textColor,
+      })
     );
   });
 
@@ -190,20 +168,16 @@ describe("CreditCard", () => {
 
     const touchableOpacity = UNSAFE_getByProps({ activeOpacity: 0.95 });
     expect(touchableOpacity.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          backgroundColor: theme.cardTypes.black.backgroundColor,
-        }),
-      ])
+      expect.objectContaining({
+        backgroundColor: theme.cardTypes.black.backgroundColor,
+      })
     );
 
     const cardTypeText = getByText("Black Card");
     expect(cardTypeText.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          color: theme.cardTypes.black.textColor,
-        }),
-      ])
+      expect.objectContaining({
+        color: theme.cardTypes.black.textColor,
+      })
     );
   });
 });

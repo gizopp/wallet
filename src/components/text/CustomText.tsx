@@ -17,7 +17,7 @@ const CustomText: React.FC<CustomTextProps> = ({
   };
 
   return (
-    <Text style={[defaultStyles, style]} {...rest}>
+    <Text style={{ ...defaultStyles, ...style }} {...rest}>
       {children}
     </Text>
   );
