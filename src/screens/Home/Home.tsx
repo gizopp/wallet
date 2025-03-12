@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
-import theme from "../theme/theme";
-import { TRootStackParamList } from "../components/navigation/RootStack";
-import { Button } from "../components/button/Button";
-import { Background } from "../components/background/Background";
+import theme from "../../theme/theme";
+import { TRootStackParamList } from "../../components/navigation/RootStack";
+import { Button } from "../../components/button/Button";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AnimatedBackground } from "../components/animated/AnimatedScreen";
+import { AnimatedBackground } from "../../components/animated/AnimatedScreen";
 
 export const Home: React.FC = () => {
   const navigation = useNavigation<NavigationProp<TRootStackParamList>>();
@@ -28,12 +27,14 @@ export const Home: React.FC = () => {
           backgroundColor={theme.colors.lightBlue}
           textColor={theme.colors.white}
           onPress={() => navigation.navigate("MyCards")}
+          testId="myCardsButton"
         />
         <Button
           text="cadastrar cartão"
           backgroundColor={theme.colors.neon}
           textColor={theme.colors.darkBlue}
           onPress={() => navigation.navigate("RegisterCard")}
+          testId="registerCardButton"
         />
       </View>
     </AnimatedBackground>

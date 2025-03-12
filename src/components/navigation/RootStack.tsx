@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "../../screens/Home";
+import { Home } from "../../screens/Home/Home";
 import { RegisterCard } from "../../screens/RegisterCard";
 import theme from "../../theme/theme";
 import { RegisteredCard } from "../../screens/RegisteredCard";

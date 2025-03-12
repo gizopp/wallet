@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import { RegisterCardForm } from "../../../components/RegisterCardForm/RegisterCardForm";
 import { Provider } from "react-redux";
 import { createStore } from "redux";

@@ -7,19 +7,20 @@ type TButtonProps = {
   textColor?: ColorValue | undefined;
   onPress?: () => void;
   disabled?: boolean;
+  testId?: string;
 };
 
-// Adicione um testID ao TouchableOpacity para facilitar o teste
 export const Button = ({
   text,
   backgroundColor = theme.colors.lightBlue,
   textColor = theme.colors.white,
   onPress,
   disabled = false,
+  testId,
 }: TButtonProps) => {
   return (
     <TouchableOpacity
-      testID="button-touchable"
+      testID={testId || "button-touchable"}
       style={{
         backgroundColor: disabled ? theme.colors.gray : backgroundColor,
         width: "100%",
