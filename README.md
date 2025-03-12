@@ -69,11 +69,6 @@ yarn android
 npm run ios
 # OU
 yarn ios
-
-# Para Web
-npm run web
-# OU
-yarn web
 ```
 
 ## Executando Testes
