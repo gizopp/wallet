@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import theme from "../theme/theme";
-import { MyCardsHeader } from "../components/header/MyCardsHeader";
-import { Button } from "../components/button/Button";
-import { StackedCreditCards } from "../components/card/StackedCreditCards";
-import { ICreditCard } from "../types/creditCard";
-import { cardService } from "../services/cardService";
+import theme from "../../theme/theme";
+import { MyCardsHeader } from "../../components/header/MyCardsHeader";
+import { Button } from "../../components/button/Button";
+import { StackedCreditCards } from "../../components/card/StackedCreditCards";
+import { ICreditCard } from "../../types/creditCard";
+import { cardService } from "../../services/cardService";
 
 export const MyCards: React.FC = () => {
   const [cards, setCards] = useState<ICreditCard[]>([]);
@@ -48,7 +48,6 @@ export const MyCards: React.FC = () => {
           />
         </View>
         <View style={styles.actionContainer}>
-          <Text style={styles.useCardText}>usar esse cartão</Text>
           <Button text="pagar com este cartão" disabled={!selectedCardId} />
         </View>
       </View>

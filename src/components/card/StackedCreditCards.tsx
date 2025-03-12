@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { CreditCard } from "./CreditCard";
 import { ICreditCard } from "../../types/creditCard";
+import theme from "../../theme/theme";
 
 interface StackedCreditCardsProps {
   cards: ICreditCard[];
@@ -92,9 +93,22 @@ export const StackedCreditCards: React.FC<StackedCreditCardsProps> = ({
   }
 
   return (
-    <View style={[styles.container, { height: getContainerHeight() }]}>
-      {orderedCards.map((item, index) => renderItem({ item, index }))}
-    </View>
+    <>
+      <View style={[styles.container, { height: getContainerHeight() }]}>
+        {orderedCards.map((item, index) => renderItem({ item, index }))}
+      </View>
+      <Text
+        style={{
+          textAlign: "center",
+          color: theme.colors.white,
+          fontFamily: theme.fontFamily.regular,
+          fontSize: theme.fontSize.h4,
+          marginBottom: 16,
+        }}
+      >
+        usar esse cartão
+      </Text>
+    </>
   );
 };
 
